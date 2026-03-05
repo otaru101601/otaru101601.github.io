@@ -1,1 +1,789 @@
-1111
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogglow | 경제, 세금, 재테크 실용 정보 블로그</title>
+    
+    <meta name="description" content="경제·세금·재테크·생활 정보를 정리한 실용 정보 블로그">
+    <meta name="keywords" content="인사이트, 계산기, 소개, 운영정책, 경제, 세금, 재테크, 투자, 절세, 금융, 생활꿀팁">
+    <meta name="author" content="Blogglow">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://blogglow.com/index.html">
+    <meta property="og:title" content="Blogglow | 경제, 세금, 재테크 실용 정보 블로그">
+    <meta property="og:description" content="경제·세금·재테크·생활 정보를 정리한 실용 정보 블로그">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blogglow.com/index.html">
+    <meta property="og:image" content="https://blogglow.com/images/og-image.jpg">
+    <meta property="og:site_name" content="Blogglow">
+    <meta property="og:locale" content="ko_KR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blogglow | 경제, 세금, 재테크 실용 정보 블로그">
+    <meta name="twitter:description" content="경제·세금·재테크·생활 정보를 정리한 실용 정보 블로그">
+    <meta name="twitter:image" content="https://blogglow.com/images/og-image.jpg">
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="icon" type="image/png" href="https://blogglow.com/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://blogglow.com/images/favicon.png">
+
+    <link rel="sitemap" type="application/xml" href="https://blogglow.com/sitemap.xml">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script type="application/ld+json">
+     {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://blogglow.com/index.html"
+        }]
+    }
+    </script>
+<!-- 인덱스 페이지 css -->
+    <style>
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg-page); color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.ad-area { padding: 12px; }
+
+.empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-light); background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border); }
+.empty-state .empty-icon { font-size: 36px; margin-bottom: 10px; }
+
+/* =========================================
+   MSN 스타일 필터 바 (페이드 + 화살표 스크롤)
+   ========================================= */
+.filter-bar {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 50;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.filter-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 54px;
+}
+.tab-scroll-wrap {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    overflow: hidden; /* 부모 영역 밖 숨김 */
+}
+
+/* 실제 스크롤 영역 (스크롤바 숨김) */
+.tab-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 14px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    scroll-behavior: smooth; /* 부드러운 스크롤 */
+    scrollbar-width: none; /* Firefox 스크롤바 숨김 */
+    -ms-overflow-style: none; /* IE 스크롤바 숨김 */
+}
+.tab-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari 스크롤바 숨김 */
+}
+
+/* 탭 버튼 유지 */
+.cat-tab {
+    padding: 0 10px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: #4d4d4d;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-bottom: 3px solid transparent;
+    display: flex;
+    align-items: center;
+}
+.cat-tab:hover { color: var(--text-main); }
+.cat-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
+
+/* 👇 추가: 우측 페이드 그라데이션 및 화살표 버튼 */
+.scroll-arrow-zone {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 80px; /* 그라데이션 넓이 */
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 16px;
+    pointer-events: none; /* 뒷배경 클릭은 무시 */
+    transition: opacity 0.3s ease;
+}
+.scroll-arrow-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #475569;
+    pointer-events: auto; /* 버튼만 클릭 가능하게 처리 */
+    transition: all 0.2s;
+}
+.scroll-arrow-btn:hover {
+    border-color: #cbd5e1;
+    color: #0f172a;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+/* =========================================
+   메인 레이아웃 및 카드 그리드 (우측 사이드바 구조)
+   ========================================= */
+.main-layout {
+    max-width: 1480px;
+    margin: 32px auto;
+    padding: 0 14px 80px;
+    display: grid;
+    grid-template-columns: 1fr 320px; /* 메인 콘텐츠 + 우측 사이드바 */
+    gap: 32px;
+    align-items: start;
+}
+.result-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.result-count { font-size: 14px; color: var(--text-sub); }
+.result-count strong { color: var(--text-main); font-weight: 700; }
+.sort-select { padding: 6px 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; color: var(--text-main); background: #fff; cursor: pointer; outline: none; }
+
+/* 세로형 반응형 카드 그리드 */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+.post-card {
+    cursor: pointer;
+    background: var(--bg-surface);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+}
+.post-card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+}
+.card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #f3f2f1;
+}
+.card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.post-card:hover .card-thumb img { transform: scale(1.05); }
+.card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.card-cat {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+}
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-main);
+    word-break: keep-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.card-title span {
+    font-weight: 400;
+    color: var(--primary);
+    margin-right: 4px;
+    font-size: 14px;
+}
+.card-meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-light);
+    border-top: 1px solid #f3f2f1;
+    padding-top: 12px;
+}
+.card-provider { display: flex; align-items: center; gap: 6px; font-weight: 500; color: var(--text-sub); }
+.card-provider img { width: 16px; height: 16px; border-radius: 50%; }
+
+.load-more-btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+.load-more-btn:hover { background: #f3f2f1; }
+
+.sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: calc(var(--header-h) + 80px); }
+.ad-block { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+.ad-label { font-size: 11px; font-weight: 600; color: var(--text-light); text-align: center; padding: 8px; border-bottom: 1px solid var(--border); background: #fdfdfd; letter-spacing: 0.05em; }
+
+@media (max-width: 992px) {
+    .main-layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+}
+@media (max-width: 768px) {
+    .post-grid { grid-template-columns: 1fr; gap: 16px; }
+    .post-card { flex-direction: row; align-items: stretch; border-radius: 8px; }
+    .card-thumb { width: 100px; aspect-ratio: 1 / 1; }
+    .card-body { padding: 12px 16px; }
+    .card-title { font-size: 15px; margin-bottom: 8px; }
+    .card-meta { padding-top: 8px; }
+}
+
+:root {
+    --bg-page: #f3f2f1;
+    --text-main: #242424;
+    --text-sub: #b3b3b3;
+    --text-light: #a19f9d;
+    --primary: #0067b8;
+    --border: #edebe9;
+    --bg-surface: #ffffff;
+    --header-h: 72px;
+}
+.notice-bar {
+    background: var(--primary);
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+}.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: rgb(14 14 14 / 95%);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+.header-inner { max-width: 1480px; margin: 0 auto; padding: 0 14px; height: var(--header-h); display: flex; align-items: center; justify-content: space-between; position: relative; }
+.logo { font-size: 24px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; font-family: 'Segoe UI', sans-serif; }
+.nav { display: flex; gap: 28px; }
+.nav a {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-sub);
+    transition: 0.2s;
+}
+.nav a:hover { color: var(--primary); }
+.header-utils { display: flex; align-items: center; gap: 16px; }
+.search-box { position: relative; width: 260px; transition: all 0.3s; }
+.search-input { width: 100%; padding: 10px 16px 10px 40px; font-size: 14px; background-color: #f3f2f1; border: 1px solid transparent; border-radius: 20px; color: var(--text-main); outline: none; transition: 0.2s; }
+.search-input:focus { background-color: #ffffff; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0,103,184,0.1); }
+.search-icon-pos { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-sub); pointer-events: none; }
+.m-btn { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; padding: 8px; font-size: 24px; align-items: center; justify-content: center; }
+
+/* 모바일 메뉴 */
+.mobile-sidebar { position: fixed; top: 0; right: -280px; width: 280px; height: 100vh; background: #fff; z-index: 1000; box-shadow: -5px 0 20px rgba(0,0,0,0.1); transition: 0.3s ease-in-out; padding: 40px 24px; display: flex; flex-direction: column; gap: 20px; }
+.mobile-sidebar.active { right: 0; }
+.m-sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.m-nav-list { display: flex; flex-direction: column; gap: 10px; }
+.m-nav-list a { font-size: 16px; font-weight: 500; color: var(--text-main); border-bottom: 1px solid var(--border); padding: 12px 0; display: block; }
+.sidebar-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.4); z-index: 999; display: none; backdrop-filter: blur(2px); }
+.sidebar-overlay.active { display: block; }
+
+/* 뉴스레터 및 푸터 */
+.newsletter-card { background: var(--bg-surface); border-radius: 12px; padding: 24px; color: var(--text-main); margin-bottom: 20px; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+.newsletter-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+.newsletter-card p { font-size: 13px; color: var(--text-sub); line-height: 1.5; margin-bottom: 16px; }
+.newsletter-input { width: 100%; padding: 10px 14px; background: #f3f2f1; border: 1px solid transparent; border-radius: 6px; font-size: 13px; margin-bottom: 12px; outline: none; transition: 0.2s; }
+.newsletter-input:focus { background: #ffffff; border-color: var(--primary); }
+.newsletter-btn { width: 100%; padding: 12px; background: var(--primary); color: #fff; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+.newsletter-btn:hover { background: #005da6; }
+
+.footer { background: #ffffff; color: var(--text-sub); padding: 60px 14px 24px; font-size: 14px; border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1480px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { margin-top: 12px; font-size: 13px; line-height: 1.6; }
+.footer-logo { font-size: 20px; font-weight: 800; color: var(--text-main); }
+.footer-col h4 { color: var(--text-main); font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+.footer-col a { display: block; color: var(--text-sub); margin-bottom: 10px; font-size: 13px; transition: 0.2s; }
+.footer-col a:hover { color: var(--primary); text-decoration: underline; }
+.footer-bottom { max-width: 1480px; margin: 0 auto; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--text-light); }
+
+@media (max-width: 768px) {
+    .nav { display: none !important; }
+    .search-box { display: none; position: absolute; top: var(--header-h); left: 0; width: 100%; background: #ffffff; padding: 12px 24px; border-bottom: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .search-box.active { display: block !important; }
+    .m-btn { display: flex !important; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .footer-brand { grid-column: 1 / -1; }
+}
+
+
+   </style>
+</head>
+<body>
+
+
+<div class="notice-bar">📌 경제, 세금, 재테크 — 꼭 알아야 할 정보를 정리합니다</div>
+<header class="site-header">
+    <div class="header-inner">
+        <a href="https://blogglow.com/index.html" class="logo">
+            <img src="https://blogglow.com/images/logo.png" alt="Blogglow" style="height:32px; width:auto;">
+        </a>
+
+        <nav class="nav"><a href="https://blogglow.com/index.html">인사이트</a><a href="https://blogglow.com/calculator.html">계산기</a><a href="https://blogglow.com/about.html">소개</a><a href="https://blogglow.com/policy.html">운영정책</a></nav>
+
+        <div class="header-utils">
+        <div class="search-box" id="global-search-box">
+            <span class="iconify search-icon-pos" data-icon="carbon:search"></span>
+            <input type="text" class="search-input" id="search-input" placeholder="검색" autocomplete="off">
+        </div>
+
+            <button class="m-btn" id="m-search-toggle"><span class="iconify" data-icon="carbon:search"></span></button>
+            <button class="m-btn" id="m-menu-toggle"><span class="iconify" data-icon="carbon:menu"></span></button>
+        </div>
+    </div>
+</header>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="mobile-sidebar" id="mobile-sidebar">
+    <div class="m-sidebar-header">
+        <img src="https://blogglow.com/images/logo.png" alt="Blogglow" style="height:24px;">
+        <button id="m-sidebar-close" style="background:none; border:none; font-size:32px;">&times;</button>
+    </div>
+    <nav class="m-nav-list"><a href="https://blogglow.com/index.html">인사이트</a><a href="https://blogglow.com/calculator.html">계산기</a><a href="https://blogglow.com/about.html">소개</a><a href="https://blogglow.com/policy.html">운영정책</a></nav>
+</div>
+
+
+
+<!-- 필터 바 -->
+<div class="filter-bar">
+    <div class="filter-inner">
+        <div class="tab-scroll-wrap">
+            <div class="tab-scroll" id="cat-tab-scroll">
+            <button class="cat-tab active" data-tag="전체">전체</button>
+        
+            <button class="cat-tab " data-tag="세금">세금</button>
+        
+            <button class="cat-tab " data-tag="절세">절세</button>
+        
+            <button class="cat-tab " data-tag="연말정산">연말정산</button>
+        
+            <button class="cat-tab " data-tag="환급">환급</button>
+        
+            <button class="cat-tab " data-tag="재테크">재테크</button>
+        
+            <button class="cat-tab " data-tag="가이드">가이드</button>
+        
+            <button class="cat-tab " data-tag="정부지원금">정부지원금</button>
+        
+            <button class="cat-tab " data-tag="생활지원">생활지원</button>
+        
+            <button class="cat-tab " data-tag="꿀팁">꿀팁</button>
+        
+            <button class="cat-tab " data-tag="부동산">부동산</button>
+        
+            <button class="cat-tab " data-tag="내집마련">내집마련</button>
+        
+            <button class="cat-tab " data-tag="대출">대출</button>
+        
+            <button class="cat-tab " data-tag="청약">청약</button>
+        </div>
+
+            <!-- 👇 추가된 화살표 버튼 영역 -->
+            <div class="scroll-arrow-zone" id="scroll-arrow-zone">
+                <button class="scroll-arrow-btn" id="scroll-right-btn" type="button" aria-label="오른쪽으로 스크롤">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 메인 레이아웃 (우측 위젯 제거됨) -->
+<!-- 메인 레이아웃 (MSN 스타일: 좌측 콘텐츠 + 우측 사이드바) -->
+<div class="main-layout">
+
+    <!-- 메인: 포스트 그리드 -->
+    <div class="content-area">
+        <div class="result-bar">
+            <span class="result-count" id="result-count"></span>
+            <select class="sort-select" id="sort-select">
+                <option value="latest">최신 등록순</option>
+                <option value="oldest">오래된 순</option>
+            </select>
+        </div>
+        <div class="post-grid" id="post-grid"></div>
+        <div class="load-more-wrap" id="load-more-wrap" style="display:none; text-align:center; margin-top:40px;">
+            <button class="load-more-btn" id="load-more-btn">
+                기사 더 보기
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 우측 사이드바 -->
+    <aside class="sidebar">
+        
+    <div class="newsletter-card">
+        <h3>Blogglow Briefing</h3>
+        <p>블로그로우가 엄선한 경제·세무 가이드를 매주 이메일로 편하게 받아보세요.</p>
+        <input type="email" id="subs-email" class="newsletter-input" placeholder="이메일 주소를 입력해주세요">
+        <button type="button" class="newsletter-btn" onclick="
+            var email = document.getElementById('subs-email').value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) { alert('올바른 이메일 주소를 입력해주세요.'); return; }
+            this.textContent = '신청 중...'; this.disabled = true;
+            var btn = this;
+            fetch('https://script.google.com/macros/s/AKfycbyBfXdXwkuGsRvkjJLBH_N8Y3mwty9Vonh2TFpLVbvuqN9OomptevdOZonFJNSlYNVKJQ/exec', {
+                method: 'POST', mode: 'no-cors',
+                body: JSON.stringify({ email: email }),
+                headers: { 'Content-Type': 'text/plain' }
+            }).then(function() {
+                document.getElementById('subs-email').value = '';
+                alert('✅ 구독 신청이 완료됐습니다!\n매주 좋은 정보를 보내드릴게요 😊');
+            }).catch(function() {
+                alert('❌ 오류가 발생했습니다.');
+            }).finally(function() {
+                btn.textContent = '무료로 구독하기'; btn.disabled = false;
+            });
+        ">무료로 구독하기</button>
+    </div>
+
+        <div class="ad-block">
+            <div class="ad-label">ADVERTISEMENT</div>
+            <div class="ad-area"><div style="width:100%; display:block;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:12px 12px 4px;">
+                <a href="https://link.coupang.com/a/dRuXiD" target="_blank" rel="noopener sponsored"
+                   style="display:block; aspect-ratio:1; overflow:hidden; border-radius:6px; border:1px solid #e2e8f0; position:relative;"
+                   onmouseover="this.querySelector('.ad-overlay').style.opacity='1'; this.querySelector('img').style.transform='scale(1.08)';"
+                   onmouseout="this.querySelector('.ad-overlay').style.opacity='0'; this.querySelector('img').style.transform='scale(1)';">
+                    <img src="https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/12/05/14/2/a1a14a77-04d8-476f-baaa-7506402da32d.jpg" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;" alt="자본주의 시대에서 살아남기 위한 최소한의 경제 공부, 하이스트, 백억남 (김욱현)" loading="lazy" decoding="async">
+                    <div class="ad-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease; border-radius:6px;">
+                        <span style="color:white; font-size:12px; font-weight:700; letter-spacing:-0.02em; background:rgba(0,0,0,0.3); padding:6px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.3);">구매하기</span>
+                    </div>
+                </a>
+            </div>
+                    <div style="padding:10px 14px; font-size:10px; color:#adb5bd; text-align:center; line-height:1.5; letter-spacing:-0.03em; border-top:1px dashed #f1f3f5; margin-top:8px;">제휴 마케팅 활동을 통해 <br>운영 수익의 일부가 발생할 수 있습니다.</div>
+                </div></div>
+        </div>
+        <div class="ad-block">
+            <div class="ad-label">ADVERTISEMENT</div>
+            <div class="ad-area"><div style="padding:20px; text-align:center; color:#94a3b8; font-size:13px;">광고 준비 중</div></div>
+        </div>
+    </aside>
+
+</div>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">Blogglow</div>
+            <p>경제·세금·재테크·생활 정보를 정리한 실용 정보 블로그</p>
+        </div>
+        <div class="footer-col"><h4>콘텐츠</h4><a href="https://blogglow.com/index.html">인사이트</a></div><div class="footer-col"><h4>정보</h4><a href="https://blogglow.com/index.htmlpolicy.html">운영정책</a></div><div class="footer-col"><h4>문의</h4><a href="#">문의하기</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 Blogglow. All rights reserved.</div>
+</footer>
+<script>
+(function() {
+    // 모바일 UI 토글
+    const searchBtn = document.getElementById('m-search-toggle');
+    const searchBox = document.getElementById('global-search-box');
+    const menuBtn = document.getElementById('m-menu-toggle');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const closeBtn = document.getElementById('m-sidebar-close');
+
+    if(searchBtn) {
+        searchBtn.onclick = (e) => { e.stopPropagation(); searchBox.classList.toggle('active'); };
+    }
+    if(menuBtn) {
+        menuBtn.onclick = () => { sidebar.classList.add('active'); overlay.classList.add('active'); };
+    }
+    const closeMenu = () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); };
+    if(closeBtn) closeBtn.onclick = closeMenu;
+    if(overlay) overlay.onclick = closeMenu;
+})();
+</script>
+
+
+
+<script type="application/json" id="db-store">[]</script>
+
+<script>
+(function() {
+    const posts = [{"id":1772612997683,"groupId":1772612997683,"title":"프리랜서 종합소득세 절세 핵심 전략과 신고 방법 완벽 가이드 (환급 최대화 비법)","filename":"contents/프리랜서-종합소득세-절세-핵심-전략과-신고-방법-완벽-가이드-환급-최대화-비법.html","excerpt":"3.3% 원천징수 후 5월 종합소득세 신고가 헷갈리신가요? 필요경비 인정부터 경비율 선택, 소득공제까지 프리랜서라면 꼭 알아야 할 절세 전략을 단계별로 정리했어요.","date":"2026. 3. 4.","category":"세금 / 절세","tags":["세금","절세","연말정산","환급"],"keywords":"세금, 절세, 연말정산, 환급","thumbnail":"https://blogglow.com/images/thumb-1772612997683.webp"},{"id":1772612997684,"groupId":1772612997683,"title":"프리랜서에게 돈 줄 때 3.3% vs 8.8% 원천징수 완벽 구분법 (사업자 필독)","filename":"contents/프리랜서에게-돈-줄-때-33-vs-88-원천징수-완벽-구분법-사업자-필독.html","excerpt":"프리랜서에게 용역비를 지급할 때 3.3%와 8.8% 중 어떤 세율을 적용해야 할까요? 사업소득과 기타소득의 구분 기준부터 역산 공식, 신고 기한까지 한 번에 정리했어요.","date":"2026. 3. 4.","category":"세금 / 절세","tags":["세금","절세","재테크","가이드"],"keywords":"세금, 절세, 재테크, 가이드","thumbnail":"https://blogglow.com/images/thumb-1772612997684.webp"},{"id":1772526620541,"groupId":1772526905888,"title":"2026년 달라지는 복지 제도 총정리 (기초생활수급부터 한부모·장애인·어르신까지)","filename":"contents/2026년-달라지는-복지-제도-총정리-기초생활수급부터-한부모장애인어르신까지.html","excerpt":"2026년 기준 중위소득이 역대급으로 인상됐어요. 생계급여, 한부모가족 지원금, 긴급돌봄, 통합돌봄 등 올해 달라지는 핵심 복지 변화를 한 번에 정리했습니다.","date":"2026. 3. 3.","category":"정부지원금","tags":["정부지원금","생활지원","꿀팁"],"keywords":"정부지원금, 생활지원, 꿀팁","thumbnail":"https://blogglow.com/images/thumb-1772526620541.webp"},{"id":1772526620539,"groupId":1772526620538,"title":"2026년 긴급복지 생계지원금 신청 방법과 자격 조건 총정리 (실직·폐업·질병 시 바로 받는 법)","filename":"contents/2026년-긴급복지-생계지원금-신청-방법과-자격-조건-총정리-실직폐업질병-시-바로-받는-법.html","excerpt":"갑작스러운 실직·폐업·질병으로 생계가 막막해졌다면? 선지원 후심사 원칙으로 최대 6개월까지 지원받는 긴급복지 생계지원금, 2026년 달라진 기준과 신청법을 한눈에 정리했어요.","date":"2026. 3. 3.","category":"정부지원금","tags":["정부지원금","생활지원","꿀팁"],"keywords":"정부지원금, 생활지원, 꿀팁","thumbnail":"https://blogglow.com/images/thumb-1772526620539.webp"},{"id":1772526620540,"groupId":1772526620538,"title":"긴급복지 의료지원 vs 재난적의료비 지원 비교 총정리 (최대 5,000만 원 받는 법)","filename":"contents/긴급복지-의료지원-vs-재난적의료비-지원-비교-총정리-최대-5000만-원-받는-법.html","excerpt":"갑작스러운 입원·수술비 걱정된다면? 긴급복지 의료지원(최대 300만 원)과 재난적의료비(최대 5,000만 원), 신청 시점과 조건이 완전히 달라요. 두 제도 차이를 한눈에 비교해드려요.","date":"2026. 3. 3.","category":"정부지원금","tags":["정부지원금","생활지원","꿀팁"],"keywords":"정부지원금, 생활지원, 꿀팁","thumbnail":"https://blogglow.com/images/thumb-1772526620540.webp"},{"id":1772522978670,"groupId":1772522978669,"title":"아파트 실거래가 조회 사이트 및 앱 비교 총정리 (국토부부터 호갱노노까지)","filename":"contents/아파트-실거래가-조회-사이트-및-앱-비교-총정리-국토부부터-호갱노노까지.html","excerpt":"국토교통부 실거래가 공개시스템부터 호갱노노, 아실, 네이버 부동산까지 — 플랫폼별 특징과 활용법을 한눈에 비교해드립니다. 집 사기 전 반드시 확인하세요.","date":"2026. 3. 3.","category":"부동산 / 청약","tags":["부동산","내집마련","꿀팁"],"keywords":"부동산, 내집마련, 꿀팁","thumbnail":"https://blogglow.com/images/thumb-1772522978670.webp"},{"id":1772522978671,"groupId":1772522978669,"title":"KB부동산 시세 조회 방법과 대출 한도 계산까지 한번에 (실거래가와 차이점 정리)","filename":"contents/KB부동산-시세-조회-방법과-대출-한도-계산까지-한번에-실거래가와-차이점-정리.html","excerpt":"KB부동산 시세가 주택담보대출 한도를 결정하는 핵심 기준입니다. 상위·일반·하위평균가 의미부터 조회 방법, 실거래가와의 차이까지 꼼꼼하게 정리했어요.","date":"2026. 3. 3.","category":"부동산 / 청약","tags":["부동산","대출","내집마련"],"keywords":"부동산, 대출, 내집마련","thumbnail":"https://blogglow.com/images/thumb-1772522978671.webp"},{"id":1772216920453,"groupId":1772216920453,"title":"주택청약통장 종류와 1순위 조건 가점제 완벽 정리 (내 집 마련 첫걸음)","filename":"contents/주택청약통장-종류와-1순위-조건-가점제-완벽-정리-내-집-마련-첫걸음.html","excerpt":"청약통장 종류부터 공공·민영 1순위 조건, 가점제 계산법, 특별공급까지 한 번에 정리했습니다. 2026년 최신 기준으로 내 집 마련 전략을 세워보세요.","date":"2026. 2. 28.","category":"부동산 / 청약","tags":["청약","부동산","내집마련","가이드"],"keywords":"청약, 부동산, 내집마련, 가이드","thumbnail":"https://blogglow.com/images/thumb-1772216920453.webp"},{"id":1772216920454,"groupId":1772216920453,"title":"청년주택드림청약통장 가입조건과 금리 소득공제 혜택 총정리 (청년 내집마련 필수템)","filename":"contents/청년주택드림청약통장-가입조건과-금리-소득공제-혜택-총정리-청년-내집마련-필수템.html","excerpt":"만 19~34세 청년이라면 반드시 알아야 할 청년주택드림청약통장! 최대 연 4.5% 금리, 500만원 비과세, 최저 2.2% 대출 연계까지 모든 혜택을 완벽 정리했습니다.","date":"2026. 2. 28.","category":"부동산 / 청약","tags":["청약","부동산","내집마련","재테크"],"keywords":"청약, 부동산, 내집마련, 재테크","thumbnail":"https://blogglow.com/images/thumb-1772216920454.webp"}];
+    const PER_PAGE = 12;
+    let currentPage = 1;
+    let filteredPosts = [];
+    let activeTag = '전체';
+    let sortOrder = 'latest';
+
+    const postGrid = document.getElementById('post-grid');
+    const loadMoreWrap = document.getElementById('load-more-wrap');
+    const resultCount = document.getElementById('result-count');
+    const headerSearch = document.querySelector('.search-input');
+
+    // 통계
+    const allCats = [...new Set(posts.map(p => p.category).filter(Boolean))];
+    document.querySelectorAll('.stat-posts').forEach(el => el.textContent = posts.length);
+    document.querySelectorAll('.stat-cats').forEach(el => el.textContent = allCats.length);
+
+    // 필터
+    function getFiltered() {
+        const keyword = (headerSearch ? headerSearch.value : '').toLowerCase().trim();
+        let result = posts.filter(p => {
+            const matchTag = activeTag === '전체' || (p.tags || []).includes(activeTag);
+            const matchSearch = !keyword ||
+                p.title.toLowerCase().includes(keyword) ||
+                (p.excerpt || '').toLowerCase().includes(keyword) ||
+                (p.tags || []).some(t => t.toLowerCase().includes(keyword));
+            return matchTag && matchSearch;
+        });
+        if (sortOrder === 'oldest') result = [...result].reverse();
+        return result;
+    }
+
+    const TimeAgo = {
+        format(date) {
+            const now = new Date();
+            const diffDays = Math.floor((now - new Date(date)) / (1000 * 60 * 60 * 24));
+            if (diffDays <= 3) return '3일 전';
+            if (diffDays <= 5) return '5일 전';
+            if (diffDays <= 7) return '1주일 전';
+            if (diffDays <= 14) return '2주일 전';
+            if (diffDays <= 30) return '1달 전';
+            if (diffDays <= 90) return '3달 전';
+            if (diffDays <= 180) return '6개월 전';
+            return '1년 전';
+        }
+    };
+
+    // 카드 생성 (MSN 세로형 스타일)
+    function renderCard(post) {
+        const relativeDate = TimeAgo.format(post.date);
+
+        let formattedTitle = post.title;
+        const pStart = post.title.lastIndexOf('(');
+        const pEnd   = post.title.lastIndexOf(')');
+        if (pStart > 0 && pEnd > pStart) {
+            const sub  = post.title.slice(pStart + 1, pEnd).trim();
+            const main = post.title.slice(0, pStart).trim();
+            formattedTitle = '<span>[' + sub + ']</span> ' + main;
+        }
+
+        // 파비콘(제공자 아이콘)
+        const faviconUrl = 'https://blogglow.com/images/favicon.png';
+
+        return `
+            <div class="post-card" onclick="location.href='${post.filename}'">
+                <div class="card-thumb">
+                    <img src="${post.thumbnail || ''}" alt="${post.title}" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <span class="card-cat">${post.category || '뉴스'}</span>
+                    <div class="card-title">${formattedTitle}</div>
+                    <div class="card-meta">
+                        <span class="card-provider">
+                            <img src="${faviconUrl}" alt="Blogglow" onerror="this.style.display='none'">
+                            Blogglow
+                        </span>
+                        <span class="card-time">${relativeDate}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // 렌더링
+    function render(reset = false) {
+        filteredPosts = getFiltered();
+        if (reset) { currentPage = 1; postGrid.innerHTML = ''; }
+
+        if (filteredPosts.length === 0) {
+            postGrid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><p>검색 결과가 없습니다.</p></div>`;
+            loadMoreWrap.style.display = 'none';
+            resultCount.innerHTML = '';
+            return;
+        }
+
+        const start = reset ? 0 : (currentPage - 1) * PER_PAGE;
+        const chunk = filteredPosts.slice(start, start + PER_PAGE);
+        postGrid.innerHTML += chunk.map(p => renderCard(p)).join('');
+
+        const shown = Math.min(currentPage * PER_PAGE, filteredPosts.length);
+        resultCount.innerHTML = `<strong>${filteredPosts.length}</strong>개 아티클`;
+        loadMoreWrap.style.display = shown < filteredPosts.length ? 'block' : 'none';
+    }
+
+    // 더보기 이벤트
+    document.getElementById('load-more-btn').addEventListener('click', () => { currentPage++; render(false); });
+
+    // 탭 클릭 이벤트
+    document.querySelectorAll('.cat-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeTag = btn.dataset.tag;
+
+                const tabScroll = document.getElementById('cat-tab-scroll');
+                const arrowZone = document.getElementById('scroll-arrow-zone');
+                const rightBtn = document.getElementById('scroll-right-btn');
+
+                if (tabScroll && rightBtn) {
+                    // 화살표 클릭 시 오른쪽으로 200px 부드럽게 스크롤
+                    rightBtn.addEventListener('click', () => {
+                        tabScroll.scrollBy({ left: 200, behavior: 'smooth' });
+                    });
+
+                    // 스크롤이 끝에 도달하면 화살표(와 그라데이션)를 숨김
+                    const checkScroll = () => {
+                        // 전체 스크롤 길이 - 화면에 보이는 길이 - 현재 스크롤한 위치
+                        const isEnd = tabScroll.scrollWidth - tabScroll.clientWidth - tabScroll.scrollLeft < 10;
+                        if (isEnd) {
+                            arrowZone.style.opacity = '0';
+                            arrowZone.style.pointerEvents = 'none';
+                        } else {
+                            arrowZone.style.opacity = '1';
+                            arrowZone.style.pointerEvents = 'auto'; // none으로 바꿨던 것 복구
+                            rightBtn.style.pointerEvents = 'auto';
+                        }
+                    };
+
+                    // 스크롤 할 때와 화면 크기 변할 때마다 체크
+                    tabScroll.addEventListener('scroll', checkScroll);
+                    window.addEventListener('resize', checkScroll);
+
+                    // 데이터가 다 불러와진 후 스크롤 화살표 필요 여부 초기 계산
+                    setTimeout(checkScroll, 100);
+                }
+
+            render(true);
+        });
+    });
+
+    // 정렬 이벤트
+    document.getElementById('sort-select').addEventListener('change', e => {
+        sortOrder = e.target.value;
+        render(true);
+    });
+
+    // ✅ 개선된 검색 로직
+    (function() {
+        // URL에서 검색어 추출 및 자동 검색
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('q');
+
+        if (searchQuery && headerSearch) {
+            headerSearch.value = searchQuery;
+            activeTag = '전체';
+            render(true);
+        }
+
+        if (headerSearch) {
+            // Enter 키로 검색
+            headerSearch.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const q = headerSearch.value.trim();
+                    if (q) {
+                        const newUrl = new URL(window.location);
+                        newUrl.searchParams.set('q', q);
+                        window.history.pushState({}, '', newUrl);
+                        render(true);
+                    }
+                }
+            });
+
+            // 실시간 검색 (300ms debounce)
+            let debounceTimer;
+            headerSearch.addEventListener('input', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    const q = headerSearch.value.trim();
+                    if (q) {
+                        const newUrl = new URL(window.location);
+                        newUrl.searchParams.set('q', q);
+                        window.history.pushState({}, '', newUrl);
+                    } else {
+                        const newUrl = new URL(window.location);
+                        newUrl.searchParams.delete('q');
+                        window.history.pushState({}, '', newUrl);
+                    }
+                    render(true);
+                }, 300);
+            });
+        }
+    })();
+
+    render(true);
+})();
+</script>
+
+
+<!-- Swiper.js 스크립트 로드 및 초기화 -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    loop: true,
+    autoHeight: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 50
+  });
+</script>
+</body>
+</html>
