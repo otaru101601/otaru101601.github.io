@@ -242,7 +242,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
     color: #c1c1c1;
     text-align: center;
     padding: 10px 24px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.02em;
 }
@@ -388,7 +388,20 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 
         <div class="ad-block">
             <div class="ad-label">ADVERTISEMENT</div>
-            <div class="ad-area"><div style="padding:20px; text-align:center; color:#94a3b8; font-size:13px;">광고 준비 중</div></div>
+            <div class="ad-area"><div style="width:100%; display:block;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:12px 12px 4px;">
+                <a href="https://link.coupang.com/a/dRuXiD" target="_blank" rel="noopener sponsored"
+                   style="display:block; aspect-ratio:1; overflow:hidden; border-radius:6px; border:1px solid #e2e8f0; position:relative;"
+                   onmouseover="this.querySelector('.ad-overlay').style.opacity='1'; this.querySelector('img').style.transform='scale(1.08)';"
+                   onmouseout="this.querySelector('.ad-overlay').style.opacity='0'; this.querySelector('img').style.transform='scale(1)';">
+                    <img src="https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/12/05/14/2/a1a14a77-04d8-476f-baaa-7506402da32d.jpg" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;" alt="자본주의 시대에서 살아남기 위한 최소한의 경제 공부, 하이스트, 백억남 (김욱현)" loading="lazy" decoding="async">
+                    <div class="ad-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease; border-radius:6px;">
+                        <span style="color:white; font-size:12px; font-weight:700; letter-spacing:-0.02em; background:rgba(0,0,0,0.3); padding:6px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.3);">구매하기</span>
+                    </div>
+                </a>
+            </div>
+                    <div style="padding:10px 14px; font-size:10px; color:#adb5bd; text-align:center; line-height:1.5; letter-spacing:-0.03em; border-top:1px dashed #f1f3f5; margin-top:8px;">제휴 마케팅 활동을 통해 <br>운영 수익의 일부가 발생할 수 있습니다.</div>
+                </div></div>
         </div>
     </aside>
 
@@ -432,7 +445,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 
 <script>
 (function() {
-    const posts = [{"id":1772729154587,"groupId":1772729154587,"title":"테슬라(TSLA) 2026년 주가 급등 원인 분석과 로보택시 밸류에이션 점검 (결국 답은 자율주행에 있다)","filename":"contents/테슬라TSLA-2026년-주가-급등-원인-분석과-로보택시-밸류에이션-점검-결국-답은-자율주.html","excerpt":"뱅크오브아메리카의 Buy 재개 및 목표주가 $460 제시를 기점으로 급등한 테슬라 주가. 로보택시, 옵티머스, 에너지 사업의 실질 가치와 리스크 팩터를 증권사 리포트 수준으로 심층 분석합니다.","date":"2026. 3. 6.","category":"미국주식","tags":["미국주식","나스닥","기술주"],"keywords":"미국주식, 나스닥, 기술주","thumbnail":"https://stockquill.com/images/thumb-1772729154587.webp"}];
+    const posts = [{"id":1772774111305,"groupId":1772774111305,"title":"비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)","filename":"contents/비트마인BMNR-이더리움-트레저리-전략-심층-분석-세계-최대-ETH-보유-기업의-진짜-가치.html","excerpt":"비트마인 이머전 테크놀로지스(BMNR)는 비트코인 채굴사에서 세계 최대 이더리움 트레저리 기업으로 탈바꿈했습니다. 447만 ETH 보유, MAVAN 스테이킹, NAV 할인 매력까지 데이터로 철저히 분석합니다.","date":"2026. 3. 6.","category":"미국주식","tags":["미국주식","나스닥","기술주"],"keywords":"미국주식, 나스닥, 기술주","thumbnail":"https://stockquill.com/images/thumb-1772774111305.webp"},{"id":1772729154587,"groupId":1772729154587,"title":"테슬라(TSLA) 2026년 주가 급등 원인 분석과 로보택시 밸류에이션 점검 (결국 답은 자율주행에 있다)","filename":"contents/테슬라TSLA-2026년-주가-급등-원인-분석과-로보택시-밸류에이션-점검-결국-답은-자율주.html","excerpt":"뱅크오브아메리카의 Buy 재개 및 목표주가 $460 제시를 기점으로 급등한 테슬라 주가. 로보택시, 옵티머스, 에너지 사업의 실질 가치와 리스크 팩터를 증권사 리포트 수준으로 심층 분석합니다.","date":"2026. 3. 6.","category":"미국주식","tags":["미국주식","나스닥","기술주"],"keywords":"미국주식, 나스닥, 기술주","thumbnail":"https://stockquill.com/images/thumb-1772729154587.webp"}];
     const PER_PAGE = 12;
     let currentPage = 1;
     let filteredPosts = [];
