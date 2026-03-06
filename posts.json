@@ -14,17 +14,5 @@
         ],
         "keywords": "미국주식, 나스닥, 기술주",
         "thumbnail": "https://stockquill.com/images/thumb-1772782236800.webp"
-    },
-    {
-        "id": 1772782236801,
-        "groupId": 1772782236799,
-        "title": "2편: 심화 과정",
-        "filename": "post/2편.html",
-        "excerpt": "두 번째 글 요약",
-        "date": "2026. 3. 6.",
-        "category": "시리즈",
-        "tags": [],
-        "keywords": "",
-        "thumbnail": "https://stockquill.com/images/thumb-1772782236801.webp"
     }
 ]
