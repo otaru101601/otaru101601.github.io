@@ -59,7 +59,7 @@
     {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": [{
+        "itemListElement":[{
             "@type": "ListItem",
             "position": 1,
             "name": "홈",
@@ -79,292 +79,169 @@
     </script>
 <!--포스트페이지 css-->
 <style>
-:root{--bg-page:#ffffff;--text-main:#191f28;--text-sub:#4b5563;--text-light:#9ca3af;--primary:#008dc4;--border:#e5e8eb;--bg-gray:#f9fafb;--max-width:1280px;--header-h:72px;--sidebar-w:280px;--ad-bg:#f8fafc;--ad-border:#e2e8f0}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Pretendard',-apple-system,sans-serif;background-color:var(--bg-page);color:var(--text-main);line-height:1.8;-webkit-font-smoothing:antialiased;word-break:keep-all}
-a{text-decoration:none;color:inherit;transition:opacity 0.2s}
-a:hover{opacity:0.7}
-img{display:block;width:100%;height:auto}
-.content-wrap{position:relative}
-
-
-
-
-/* ===== 블로그 포스트 본문 공통 클래스 (프롬프트 연동) ===== */
-
-/* 인용구 - 파란 왼쪽 라인 */
-.bq {
-  margin: 32px 0;
-  padding: 24px 22px;
-  background: #f8f9fa;
-  border-left: 4px solid #3b82f6;
-  border-radius: 0 12px 12px 0;
+:root{
+    --bg-page: #f8fafc;
+    --text-main: #0f172a;
+    --text-sub: #475569;
+    --text-light: #94a3b8;
+    --primary: #10b981;
+    --primary-light: #d1fae5;
+    --border: #e2e8f0;
+    --bg-surface: #ffffff;
+    --max-width: 1280px;
+    --header-h: 72px;
+    --sidebar-w: 280px;
 }
-.bq p {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #191f28;
-  line-height: 1.6;
-}
-.bq cite {
-  display: block;
-  margin-top: 12px;
-  font-size: 14px;
-  color: #6b7280;
-  font-style: normal;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard', -apple-system, sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.8; -webkit-font-smoothing: antialiased; word-break: keep-all; }
+a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
+a:hover { opacity: 0.7; }
+img { display: block; width: 100%; height: auto; }
+.content-wrap { position: relative; }
 
-/* 도입부 / 일반 본문 단락 */
-.body-text {
-  font-family: 'Pretendard', sans-serif;
-  font-size: 17px;
-  line-height: 1.75;
-  color: #4e5968;
-  font-weight: 400;
-  margin: 0 0 28px;
-}
+/* ===== 블로그 포스트 본문 공통 클래스 ===== */
+.bq { margin: 32px 0; padding: 24px 22px; background: #f8f9fa; border-left: 4px solid #3b82f6; border-radius: 0 12px 12px 0; }
+.bq p { margin: 0; font-size: 18px; font-weight: 600; color: #191f28; line-height: 1.6; }
+.bq cite { display: block; margin-top: 12px; font-size: 14px; color: #6b7280; font-style: normal; }
 
-/* 강조 인라인 박스 (짧은 인용 문구) */
-.emph-box {
-  margin-bottom: 28px;
-  color: #191f28;
-  font-weight: 500;
-  background: #f2f4f6;
-  padding: 12px 16px;
-  border-radius: 8px;
-  display: inline-block;
-  font-size: 17px;
-  line-height: 1.75;
-}
+.body-text { font-family: 'Pretendard', sans-serif; font-size: 17px; line-height: 1.75; color: #4e5968; font-weight: 400; margin: 0 0 28px; }
 
-/* 이미지 래퍼 */
-.img-wrap {
-  text-align: center;
-  margin: 40px 0;
-}
-.img-wrap img {
-  width: 100%;
-  max-width: 900px;
-  border-radius: 12px;
-  border: 1px solid #e5e8eb;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
+.emph-box { margin-bottom: 28px; color: #191f28; font-weight: 500; background: #f2f4f6; padding: 12px 16px; border-radius: 8px; display: inline-block; font-size: 17px; line-height: 1.75; }
 
-/* 경고 박스 (노란색) */
-.warn-box {
-  background: #fffbe6;
-  border: 1px solid #ffe58f;
-  padding: 16px;
-  border-radius: 8px;
-  font-size: 15px;
-  color: #876800;
-  margin: 28px 0;
-}
-.warn-box strong {
-  font-weight: 600;
-}
+.img-wrap { text-align: center; margin: 40px 0; }
+.img-wrap img { width: 100%; max-width: 900px; border-radius: 12px; border: 1px solid #e5e8eb; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); }
 
-/* 팁 / 정보 박스 (회색) */
-.tip-box {
-  background: #f8f9fa;
-  border: 1px solid #e5e8eb;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 28px 0;
-}
-.tip-box strong {
-  display: block;
-  margin-bottom: 12px;
-  color: #191f28;
-  font-size: 17px;
-  font-weight: 600;
-}
-.tip-box ul,
-.tip-box ol {
-  margin: 0;
-  padding-left: 20px;
-  color: #4e5968;
-  font-size: 17px;
-  line-height: 1.75;
-}
-.tip-box li {
-  margin-bottom: 8px;
-}
+.warn-box { background: #fffbe6; border: 1px solid #ffe58f; padding: 16px; border-radius: 8px; font-size: 15px; color: #876800; margin: 28px 0; }
+.warn-box strong { font-weight: 600; }
 
-/* PS 박스 (녹색) */
-.ps-box {
-  background: #f0fdf4;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #bbf7d0;
-  color: #166534;
-  font-size: 17px;
-  line-height: 1.75;
-  margin: 28px 0;
-}
-.ps-box strong {
-  font-weight: 600;
-}
+.tip-box { background: #f8f9fa; border: 1px solid #e5e8eb; padding: 20px; border-radius: 12px; margin: 28px 0; }
+.tip-box strong { display: block; margin-bottom: 12px; color: #191f28; font-size: 17px; font-weight: 600; }
+.tip-box ul, .tip-box ol { margin: 0; padding-left: 20px; color: #4e5968; font-size: 17px; line-height: 1.75; }
+.tip-box li { margin-bottom: 8px; }
 
-/* 본문 리스트 (ul / ol 공통) */
-.body-list {
-  padding-left: 20px;
-  color: #4e5968;
-  margin-bottom: 28px;
-  font-size: 17px;
-  line-height: 1.75;
-}
-.body-list li {
-  margin-bottom: 8px;
-}
-.body-list li strong {
-  color: #191f28;
-  font-weight: 500;
-}
+.ps-box { background: #f0fdf4; padding: 20px; border-radius: 12px; border: 1px solid #bbf7d0; color: #166534; font-size: 17px; line-height: 1.75; margin: 28px 0; }
+.ps-box strong { font-weight: 600; }
 
-/* 섹션 구분선 */
-.section-hr {
-  border: 0;
-  height: 1px;
-  background: #e5e8eb;
-  margin: 60px 0;
-}
+.body-list { padding-left: 20px; color: #4e5968; margin-bottom: 28px; font-size: 17px; line-height: 1.75; }
+.body-list li { margin-bottom: 8px; }
+.body-list li strong { color: #191f28; font-weight: 500; }
 
-/* 인라인 코드 */
-.inline-code {
-  background: #f1f5f9;
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: #d946ef;
-  font-family: monospace;
-  font-size: 15px;
-}
+.section-hr { border: 0; height: 1px; background: #e5e8eb; margin: 60px 0; }
+.inline-code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #d946ef; font-family: monospace; font-size: 15px; }
 
 
+/* ===== 프리미엄 글자 크기 조절기 ===== */
+.ffc-wrapper { position: absolute; top: 0; right: -25px; transform: translateX(100%); height: 100%; pointer-events: none; z-index: 50; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 80px; }
+.floating-font-control { position: sticky; bottom: 50px; pointer-events: auto; display: flex; flex-direction: column; align-items: center; gap: 6px; background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 16px 10px; border-radius: 40px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.floating-font-control:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0,141,196,0.12), 0 4px 12px rgba(0,0,0,0.04); border-color: rgba(0,141,196,0.2); }
+.ffc-title { font-size: 16px; font-weight: 800; color: var(--text-main); font-family: 'Times New Roman', serif; margin-bottom: 6px; opacity: 0.8; }
+.ffc-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: transparent; color: #6b7280; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+.ffc-btn:hover { background: #f1f5f9; color: var(--primary); transform: scale(1.1); }
+.ffc-display { font-size: 13px; font-weight: 700; color: var(--primary); background: #eff6ff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-variant-numeric: tabular-nums; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
 
 
+/* ===== 상단 네비게이션 및 브레드크럼 ===== */
+.breadcrumb { background: transparent; border-bottom: 1px solid var(--border); padding: 16px 0; }
+.breadcrumb-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; font-size: 13px; color: var(--text-light); }
+.breadcrumb-inner a:hover { color: var(--primary); }
+.back-btn-wrap { max-width: var(--max-width); margin: 0 auto; padding: 24px 24px 0; }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-sub); font-weight: 500; font-size: 13px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; background: #fff; }
 
 
+/* ===== 메인 레이아웃 ===== */
+.container { max-width: 1480px; margin: 0 auto; padding: 0 14px 80px; display: grid; grid-template-columns: var(--sidebar-w) minmax(0,1fr) var(--sidebar-w); gap: 60px; align-items: start; }
+.content-wrap { min-width: 0; background: #ffffff; padding: 40px; border-radius: 24px; box-shadow: 0 4px 30px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; }
 
 
-.ffc-wrapper{position:absolute;top:0;right:-25px;transform:translateX(100%);height:100%;pointer-events:none;z-index:50;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:80px}
-.floating-font-control{position:sticky;bottom:50px;pointer-events:auto;display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,255,255,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:16px 10px;border-radius:40px;border:1px solid rgba(0,0,0,0.05);box-shadow:0 10px 30px rgba(0,0,0,0.05),0 1px 3px rgba(0,0,0,0.02);transition:transform 0.3s ease,box-shadow 0.3s ease,border-color 0.3s ease}
-.floating-font-control:hover{transform:translateY(-4px);box-shadow:0 15px 40px rgba(0,141,196,0.12),0 4px 12px rgba(0,0,0,0.04);border-color:rgba(0,141,196,0.2)}
-.ffc-title{font-size:16px;font-weight:800;color:var(--text-main);font-family:'Times New Roman',serif;margin-bottom:6px;opacity:0.8}
-.ffc-btn{width:36px;height:36px;border-radius:50%;border:none;background:transparent;color:#6b7280;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease}
-.ffc-btn:hover{background:#f1f5f9;color:var(--primary);transform:scale(1.1)}
-.ffc-display{font-size:13px;font-weight:700;color:var(--primary);background:#eff6ff;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-variant-numeric:tabular-nums;box-shadow:inset 0 2px 4px rgba(0,0,0,0.02)}
-.breadcrumb{background:var(--bg-gray);border-bottom:1px solid var(--border);padding:16px 0}
-.breadcrumb-inner{max-width:var(--max-width);margin:0 auto;padding:0 24px;font-size:13px;color:var(--text-light)}
-.breadcrumb-inner a:hover{color:var(--primary)}
-.back-btn-wrap{max-width:var(--max-width);margin:0 auto;padding:24px 24px 0}
-.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--text-sub);font-weight:500;font-size:13px;padding:8px 16px;border:1px solid var(--border);border-radius:20px;background:#fff}
-.container{max-width:1480px;margin:0 auto;padding:0 14px 80px;display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr) var(--sidebar-w);gap:60px;align-items:start}
-.content-wrap{min-width:0}
-.sidebar{position:sticky;top:calc(var(--header-h) + 24px);display:flex;flex-direction:column;gap:20px}
-.widget{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden}
-.widget-title{font-size:11px;font-weight:700;color:var(--text-light);padding:14px 20px;border-bottom:1px solid var(--border);letter-spacing:0.08em;text-transform:uppercase}
-.widget-body{padding:16px 20px}
-.ad-block{background:var(--ad-bg);border:1px solid var(--border);border-radius:16px;overflow:hidden}
-.ad-label{font-size:10px;font-weight:700;color:var(--text-light);text-align:center;padding:8px;border-bottom:1px solid var(--ad-border);background:#f1f5f9}
-.ad-area{width:100%;min-height:250px;display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:13px}
-.toc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px}
-.toc-list a{font-size:13px;color:var(--text-light);display:block;padding:6px 8px;border-left:2px solid transparent}
-.toc-list a:hover,.toc-list a.active{color:var(--primary);background:#eff6ff;border-left-color:var(--primary);font-weight:600}
-.post-cat{display:inline-block;color:var(--primary);font-size:12px;font-weight:500;margin-bottom:16px;text-transform:uppercase;background:#eff6ff;padding:4px 12px;border-radius:20px}
-h1 {
-    font-size: 2.2rem;
-    margin-bottom: 28px;
-    line-height: 1.3;
-    color: var(--text-main);
-    word-break: keep-all;
-    /* letter-spacing: -2px; */
-    font-family: Segoe UI, Segoe UI Midlevel, sans-serif;
-}.meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--border)}
-.meta-left{display:flex;align-items:center;gap:12px}
-.meta-avatar{width:40px;height:40px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.meta-info{display:flex;flex-direction:column;gap:2px}
-.meta-author{font-weight:700;font-size:14px;color:var(--text-main)}
-.meta-date{font-size:13px;color:var(--text-light)}
-.meta-share{display:flex;gap:14px;align-items:center}
-.meta-share a{color:var(--text-light);opacity:1}
-.meta-share a:hover{color:var(--primary)}
-.content{font-size:18px;color:var(--text-main);line-height:1.75;transition:font-size 0.2s ease}
-.content p,.content li,.content span,.content div,.content strong,.content ul,.content ol,.content a,.content b,.content em{font-size:inherit !important;line-height:inherit !important}
-.content img {width: 100%;aspect-ratio: 16 / 9; object-fit: cover; object-position: center;border-radius: 16px;margin: 20px 0;border: 1px solid var(--border);box-shadow: 0 8px 24px rgba(0,0,0,0.07);content-visibility: auto;}
-.content h2{font-size:1.45rem !important;line-height:1.35 !important;margin:55px 0 22px;padding-bottom:12px;border-bottom:2px solid var(--text-main);font-weight:700;letter-spacing:-0.01em}
-.content h3{font-size:1.2rem !important;line-height:1.4 !important;margin:40px 0 16px;font-weight:700}
-.content blockquote{margin:32px 0;padding:24px 32px;background:var(--bg-gray);border-left:4px solid var(--primary);border-radius:0 16px 16px 0}
-.interlink-card{margin:60px 0;display:flex;gap:20px;align-items:center;padding:16px;border-radius:12px;border:1px solid var(--border);background:#fff;transition:all 0.3s}
-.interlink-card:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 4px 12px rgba(0,0,0,0.05)}
-.il-thumb{width:80px;height:80px;border-radius:8px;object-fit:cover;flex-shrink:0}
-.il-info{flex:1;display:flex;flex-direction:column;gap:4px}
-.il-label{font-size:11px;font-weight:300;color:var(--primary);text-transform:uppercase}
-.il-title{font-size:18px;font-weight:700;color:#4e5661;line-height:1.4}
-.related-section{margin-top:80px;padding-top:40px;border-top:2px solid var(--text-main)}
-.related-heading-wrap{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
-.related-heading{font-size:20px;font-weight:800;color:var(--text-main);display:flex;align-items:center;gap:10px}
-.see-more{font-size:13px;color:var(--text-sub);font-weight:600}
-.related-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
-.related-item{display:flex;justify-content:space-between;align-items:center;padding:30px 0;border-bottom:1px solid var(--border);transition:background 0.2s}
-.related-item:hover .rc-title{color:var(--primary);text-decoration:underline}
-.rc-text-wrap{flex:1;padding-right:40px;display:flex;flex-direction:column;gap:8px}
-.rc-title {font-size: 18px;font-weight: 600;color: var(--text-main);line-height: 1.4;word-break: keep-all;font-family: 'S-CoreDream';}
-.rc-excerpt{font-size:14px;color:var(--text-sub);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.rc-date{font-size:13px;color:var(--text-light);margin-top:4px}
-.rc-thumb-wrap{width:240px;aspect-ratio:16/10;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex-shrink:0}
-.rc-thumb{width:100%;height:100%;object-fit:cover}
-.series-widget-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px}
-.series-widget-item{display:flex;gap:12px;align-items:center;transition:0.2s}
-.series-widget-item.current{opacity:0.4;pointer-events:none}
-.sw-thumb{width:60px;height:44px;border-radius:4px;object-fit:cover;flex-shrink:0;border:1px solid var(--border)}
-.sw-title{font-size:13px;font-weight:600;color:var(--text-main);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* 🚀 하이엔드 사이드바 및 위젯 교체 적용 */
+.sidebar { position: sticky; top: calc(var(--header-h) + 24px); display: flex; flex-direction: column; gap: 24px; }
+.widget { background: #ffffff; border: 1px solid #f1f5f9; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.widget:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+.widget-title { font-size: 13px; font-weight: 800; color: #0f172a; padding: 20px 24px 16px; letter-spacing: 0.05em; text-transform: uppercase; position: relative; display: flex; align-items: center; gap: 8px; }
+.widget-title::after { content: ''; position: absolute; bottom: 0; left: 24px; width: 24px; height: 3px; background: var(--primary); border-radius: 3px; }
+.widget-body { padding: 16px 24px 24px; }
 
-@media (max-width:1200px){
-.ffc-wrapper{position:fixed;top:auto;bottom:30px;right:30px;transform:none;height:auto;z-index:990;display:block;padding-bottom:0}
-.floating-font-control{flex-direction:row;padding:8px 12px 8px 16px;gap:4px;border-radius:50px}
-.ffc-title{margin-bottom:0;margin-right:8px}
-.container{grid-template-columns:1fr var(--sidebar-w)}
-.sidebar-left{display:none}
-}
+.ad-block { background: #ffffff; border: 1px solid #f1f5f9; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); overflow: hidden; }
+.ad-label { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; padding: 12px 20px; border-bottom: 1px dashed #f1f5f9; letter-spacing: 0.1em; display: flex; align-items: center; gap: 6px; }
+.ad-label::before { content:''; display:inline-block; width:6px; height:6px; background:#e2e8f0; border-radius:50%; }
+.ad-area { width: 100%; min-height: 250px; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 13px; }
 
-@media (max-width:768px){
-.ffc-wrapper{bottom:20px;right:20px}
-.container{grid-template-columns:1fr}
-.sidebar-right{display:none}
-h1{font-size:1.5rem}
-.rc-thumb-wrap{width:120px}
-.rc-text-wrap{padding-right:20px}
-.back-btn{padding:2px 16px}
-main{margin-top:20px !important}
-.breadcrumb{padding:6px 0}
-.back-btn-wrap{padding:24px 14px 0}
-}
-@media print{
-.site-header,.notice-bar,.breadcrumb,.back-btn-wrap,.sidebar,.related-section,.footer,.floating-font-control,.meta-share,.interlink-card,.ai-official-wrapper{display:none !important}
-body{background:#fff !important;color:#000 !important;margin:0;padding:0}
-.container{display:block !important;margin:0 !important;padding:0 !important;max-width:100% !important}
-.content-wrap{width:100% !important;margin:0 !important;padding:0 !important}
-h1{font-size:24pt !important;margin-bottom:10px !important;color:#000 !important}
-.content{font-size:12pt !important;color:#000 !important;line-height:1.6 !important}
-.content img{max-width:100% !important;page-break-inside:avoid;border:none !important;box-shadow:none !important}
-*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-}
+/* 목차(TOC) 타임라인 스타일 */
+.toc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; border-left: 2px solid #f1f5f9; margin-left: 4px; }
+.toc-list a { font-size: 13.5px; color: #64748b; display: block; padding: 8px 12px 8px 16px; position: relative; margin-left: -2px; border-left: 2px solid transparent; border-radius: 0 8px 8px 0; transition: all 0.2s; line-height: 1.4; }
+.toc-list a:hover, .toc-list a.active { color: var(--primary); font-weight: 700; background: #f8fafc; border-left-color: var(--primary); }
 
-/* 🟢[프리미엄 AI 배너] 시스템 전용 CSS (전환율 최적화 & 강제 상속 방어) */
-.ai-official-wrapper { margin: 50px 0 !important; font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', sans-serif !important; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; }
-.ai-official-wrapper .ai-banner-btn { width: 80% !important; margin: 0 auto !important; display: flex !important; align-items: center !important; gap: 24px !important; background: linear-gradient(145deg, #ffffff 0%, #fcfcfd 100%) !important; border: 1px solid #ebebeb !important; border-radius: 20px !important; padding: 24px 28px !important; cursor: pointer !important; text-align: left !important; position: relative !important; font-family: 'S-CoreDream', sans-serif !important; box-shadow: 0 2px 5px 5px rgba(243, 243, 243, 0.1), 0 10px 20px 0px rgba(28, 28, 28, 0.1) !important; }
-.ai-official-wrapper .ai-banner-logo-wrap { width: 64px !important; height: 64px !important; min-width: 64px !important; background: #ffffff !important; border-radius: 18px !important; display: flex !important; align-items: center !important; justify-content: center !important; border: 1px solid rgba(0,0,0,0.05) !important; padding: 6px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important; }
+/* 시리즈 위젯 스타일 */
+.series-widget-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.series-widget-item { display: flex; gap: 12px; align-items: center; transition: 0.2s; padding: 10px; border-radius: 12px; background: #ffffff; border: 1px solid transparent; }
+.series-widget-item:hover { background: #f8fafc; border-color: #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transform: translateX(2px); }
+.series-widget-item.current { background: #eff6ff; border-color: #bfdbfe; opacity: 1; pointer-events: none; }
+.series-widget-item.current .sw-title { color: #2563eb; }
+.sw-thumb { width: 64px; height: 48px; border-radius: 8px; object-fit: cover; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+.sw-title { font-size: 13px; font-weight: 600; color: var(--text-main); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+
+/* ===== 본문 메타 정보 ===== */
+.post-cat { display: inline-block; color: var(--primary); font-size: 12px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; background: var(--primary-light); padding: 6px 14px; border-radius: 20px; letter-spacing: 0.05em; }
+h1 { font-size: 2.4rem; margin-bottom: 28px; line-height: 1.3; color: var(--text-main); word-break: keep-all; font-family: 'Pretendard', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+.meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+.meta-left { display: flex; align-items: center; gap: 12px; }
+.meta-avatar { width: 44px; height: 44px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; border: 1px solid #e2e8f0; }
+.meta-info { display: flex; flex-direction: column; gap: 2px; }
+.meta-author { font-weight: 800; font-size: 14px; color: var(--text-main); }
+.meta-date { font-size: 13px; color: var(--text-light); }
+.meta-share { display: flex; gap: 14px; align-items: center; }
+.meta-share a { color: var(--text-light); opacity: 1; transition: 0.2s; }
+.meta-share a:hover { color: var(--primary); transform: translateY(-2px); }
+
+
+/* ===== 본문 스타일링 ===== */
+.content { font-size: 18px; color: var(--text-main); line-height: 1.75; transition: font-size 0.2s ease; }
+.content p, .content li, .content span, .content div, .content strong, .content ul, .content ol, .content a, .content b, .content em { font-size: inherit !important; line-height: inherit !important; }
+.content img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; border-radius: 16px; margin: 20px 0; border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.07); content-visibility: auto; }
+.content h2 { font-size: 1.45rem !important; line-height: 1.35 !important; margin: 55px 0 22px; padding-bottom: 12px; border-bottom: 2px solid var(--text-main); font-weight: 700; letter-spacing: -0.01em; }
+.content h3 { font-size: 1.2rem !important; line-height: 1.4 !important; margin: 40px 0 16px; font-weight: 700; }
+
+.interlink-card { margin: 60px 0; display: flex; gap: 20px; align-items: center; padding: 16px; border-radius: 16px; border: 1px solid #f1f5f9; background: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: all 0.3s; }
+.interlink-card:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+.il-thumb { width: 100px; height: 70px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.il-info { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.il-label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; }
+.il-title { font-size: 17px; font-weight: 700; color: #1e293b; line-height: 1.4; }
+
+
+/* ===== 연관 콘텐츠 ===== */
+.related-section { margin-top: 80px; padding-top: 40px; border-top: 2px solid var(--text-main); }
+.related-heading-wrap { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.related-heading { font-size: 20px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+.see-more { font-size: 13px; color: var(--text-sub); font-weight: 600; }
+.related-list { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+.related-item { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+.related-item:hover .rc-title { color: var(--primary); text-decoration: underline; }
+.rc-text-wrap { flex: 1; padding-right: 40px; display: flex; flex-direction: column; gap: 8px; }
+.rc-title { font-size: 18px; font-weight: 700; color: var(--text-main); line-height: 1.4; word-break: keep-all; }
+.rc-excerpt { font-size: 14px; color: var(--text-sub); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.rc-date { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+.rc-thumb-wrap { width: 200px; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
+.rc-thumb { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* ===== 🟢 프리미엄 AI 배너 ===== */
+.ai-official-wrapper { margin: 50px 0 !important; font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important; }
+.ai-official-wrapper .ai-banner-btn { width: 85% !important; margin: 0 auto !important; display: flex !important; align-items: center !important; gap: 24px !important; background: #ffffff !important; border: 1px solid #f1f5f9 !important; border-radius: 24px !important; padding: 24px 28px !important; cursor: pointer !important; text-align: left !important; box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important; transition: transform 0.3s ease, box-shadow 0.3s ease !important; }
+.ai-official-wrapper .ai-banner-btn:hover { transform: translateY(-4px) !important; box-shadow: 0 15px 40px rgba(0,0,0,0.08) !important; }
+.ai-official-wrapper .ai-banner-logo-wrap { width: 64px !important; height: 64px !important; min-width: 64px !important; background: #ffffff !important; border-radius: 18px !important; display: flex !important; align-items: center !important; justify-content: center !important; border: 1px solid #f1f5f9 !important; padding: 6px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important; }
 .ai-official-wrapper .banner-logo-img { width: 100% !important; height: 100% !important; object-fit: contain !important; border-radius: 12px !important; }
-.ai-official-wrapper .ai-banner-info { flex: 1 !important; display: flex !important; flex-direction: column !important; gap: 6px !important; padding-right: 10px !important; }
+.ai-official-wrapper .ai-banner-info { flex: 1 !important; display: flex !important; flex-direction: column !important; gap: 6px !important; }
 .ai-official-wrapper .ai-banner-title-wrap { display: flex !important; align-items: center !important; gap: 10px !important; }
-.ai-official-wrapper .ai-banner-title { font-size: 19px !important; line-height: 1.3 !important; font-weight: 800 !important; color: #111827 !important; letter-spacing: -0.01em !important; }
-.ai-official-wrapper .ai-banner-badge { font-size: 11px !important; line-height: 1 !important; font-weight: 500 !important; color: #6b6b6b !important; background: rgba(111, 111, 111, 0.1) !important; border: 1px solid rgba(175, 175, 175, 0.2) !important; padding: 6px 8px !important; border-radius: 6px !important; letter-spacing: 0.02em !important; display: inline-flex !important; align-items: center !important; gap: 4px !important; }
-.ai-official-wrapper .ai-banner-desc { font-size: 13.5px !important; line-height: 1.5 !important; color: #475569 !important; letter-spacing: -0.01em !important; word-break: keep-all !important; }
+.ai-official-wrapper .ai-banner-title { font-size: 19px !important; line-height: 1.3 !important; font-weight: 800 !important; color: #0f172a !important; letter-spacing: -0.01em !important; }
+.ai-official-wrapper .ai-banner-badge { font-size: 11px !important; line-height: 1 !important; font-weight: 600 !important; color: #64748b !important; background: #f8fafc !important; border: 1px solid #e2e8f0 !important; padding: 6px 10px !important; border-radius: 8px !important; letter-spacing: 0.05em !important; }
+.ai-official-wrapper .ai-banner-desc { font-size: 14px !important; line-height: 1.5 !important; color: #475569 !important; word-break: keep-all !important; }
 .ai-official-wrapper .ai-banner-cta { display: none !important; }
-.ai-official-wrapper .ai-modal-content { padding: 36px 32px !important; font-family: 'Pretendard', sans-serif !important; background: #ffffff !important; }
-.ai-official-wrapper .ai-modal-header {display: flex !important;align-items: center !important;gap: 20px !important;margin-bottom: 10px !important;padding-bottom: 0 !important;border-bottom: 1px solid #f1f5f9 !important;}
+
+/* AI 배너 팝업 모달 */
+.ai-official-wrapper .ai-modal-content { padding: 36px 32px !important; background: #ffffff !important; border-radius: 24px !important; }
+.ai-official-wrapper .ai-modal-header { display: flex !important; align-items: center !important; gap: 20px !important; margin-bottom: 10px !important; border-bottom: 1px solid #f1f5f9 !important; }
 .ai-official-wrapper .modal-logo-img { width: 64px !important; height: 64px !important; border-radius: 18px !important; object-fit: contain !important; border: 1px solid #e2e8f0 !important; padding: 6px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important; }
 .ai-official-wrapper .ai-modal-title { font-size: 22px !important; line-height: 1.3 !important; font-weight: 800 !important; color: #0f172a !important; margin-bottom: 4px !important; letter-spacing: -0.02em !important; }
 .ai-official-wrapper .ai-modal-domain { font-size: 14px !important; line-height: 1 !important; color: #64748b !important; font-weight: 600 !important; }
@@ -380,9 +257,9 @@ h1{font-size:24pt !important;margin-bottom:10px !important;color:#000 !important
 .ai-official-wrapper .ai-modal-feat-bullet { color: var(--ai-color) !important; display: flex !important; align-items: center !important; justify-content: center !important; margin-top: 2px !important; }
 .ai-official-wrapper .ai-modal-link-btn { width: 100% !important; padding: 18px !important; background: linear-gradient(135deg, var(--ai-color) 0%, rgba(var(--ai-color-rgb), 0.8) 100%) !important; color: #ffffff !important; border: none !important; border-radius: 16px !important; font-size: 17px !important; line-height: 1 !important; font-weight: 800 !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 10px !important; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important; box-shadow: 0 10px 25px rgba(var(--ai-color-rgb), 0.3) !important; }
 .ai-official-wrapper .ai-modal-link-btn:hover { transform: translateY(-3px) !important; box-shadow: 0 15px 30px rgba(var(--ai-color-rgb), 0.4) !important; }
-@media (max-width: 600px) { .ai-official-wrapper .ai-banner-btn { width: 100% !important; flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; padding: 20px !important; } .ai-official-wrapper .ai-banner-info { padding-right: 0 !important; } }
 
-/* 🟢 댓글 시스템 전용 CSS */
+
+/* ===== 🟢 커스텀 댓글 시스템 ===== */
 .cmt-section { margin-top: 60px; padding-top: 40px; border-top: 2px solid #191f28; }
 .cmt-title { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 800; margin-bottom: 24px; color: #191f28; }
 .cmt-form { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 30px; }
@@ -408,19 +285,50 @@ textarea.cmt-input { height: 100px; resize: none; }
 .cmt-action-btn:hover { color: #64748b; }
 .cmt-action-btn.liked { color: #ef4444 !important; }
 
-/* 📱 모바일 화면 최적화 (이름/이메일 세로배치, 높이 및 여백 축소) */
+
+/* ===== 미디어 쿼리 ===== */
+@media (max-width: 1200px) {
+    .ffc-wrapper { position: fixed; top: auto; bottom: 30px; right: 30px; transform: none; height: auto; z-index: 990; display: block; padding-bottom: 0; }
+    .floating-font-control { flex-direction: row; padding: 8px 12px 8px 16px; gap: 4px; border-radius: 50px; }
+    .ffc-title { margin-bottom: 0; margin-right: 8px; }
+    .container { grid-template-columns: 1fr var(--sidebar-w); }
+    .sidebar-left { display: none; }
+}
 @media (max-width: 768px) {
+    .ffc-wrapper { bottom: 20px; right: 20px; }
+    .container { grid-template-columns: 1fr; }
+    .sidebar-right { display: none; }
+    .content-wrap { padding: 24px; border-radius: 16px; }
+    h1 { font-size: 1.8rem; }
+    .rc-thumb-wrap { width: 120px; }
+    .rc-text-wrap { padding-right: 20px; }
+    .back-btn { padding: 2px 16px; }
+    main { margin-top: 20px !important; }
+    .breadcrumb { padding: 6px 0; }
+    .back-btn-wrap { padding: 24px 14px 0; }
+
+    .ai-official-wrapper .ai-banner-btn { width: 100% !important; flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; padding: 20px !important; }
+    .ai-official-wrapper .ai-banner-info { padding-right: 0 !important; }
+
     .cmt-title { font-size: 18px; margin-bottom: 16px; }
-    .cmt-form { padding: 16px; } /* 안쪽 여백 축소 */
+    .cmt-form { padding: 16px; }
     .cmt-form-row { grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
-    .cmt-input { padding: 10px; font-size: 13px; } /* 글자 크기 축소 */
-    textarea.cmt-input { height: 70px; } /* 텍스트창 높이 대폭 축소 */
+    .cmt-input { padding: 10px; font-size: 13px; }
+    textarea.cmt-input { height: 70px; }
     .cmt-submit-btn { padding: 12px; font-size: 14px; }
 }
 
-
-
-
+/* ===== 인쇄 스타일 ===== */
+@media print {
+    .site-header, .notice-bar, .breadcrumb, .back-btn-wrap, .sidebar, .related-section, .footer, .floating-font-control, .meta-share, .interlink-card, .ai-official-wrapper, .cmt-section { display: none !important; }
+    body { background: #fff !important; color: #000 !important; margin: 0; padding: 0; }
+    .container { display: block !important; margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+    .content-wrap { width: 100% !important; margin: 0 !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+    h1 { font-size: 24pt !important; margin-bottom: 10px !important; color: #000 !important; }
+    .content { font-size: 12pt !important; color: #000 !important; line-height: 1.6 !important; }
+    .content img { max-width: 100% !important; page-break-inside: avoid; border: none !important; box-shadow: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
 
 
 :root {
@@ -558,61 +466,50 @@ textarea.cmt-input { height: 100px; resize: none; }
     <div class="back-btn-wrap"><a href="https://stockquill.com/index.html" class="back-btn"><span class="iconify" data-icon="carbon:arrow-left"></span> 목록으로 돌아가기</a></div>
 
     <main class="container" style="margin-top: 40px;">
+        <!-- 🚀 좌측 사이드바 (하이엔드 디자인) -->
         <aside class="sidebar sidebar-left">
-            <div class="widget"><div class="widget-title">CONTENTS</div><div class="widget-body"><ul class="toc-list" id="toc-list-left"></ul></div></div>
-            <div class="ad-block"><div class="ad-label">ADVERTISEMENT</div><div class="ad-area"><div style="padding:20px; text-align:center; color:#94a3b8; font-size:13px;">광고 준비 중</div></div></div>
+            <div class="widget">
+                <div class="widget-title">
+                    <span class="iconify" data-icon="carbon:list-boxes" style="font-size:18px; color:var(--primary);"></span> CONTENTS
+                </div>
+                <div class="widget-body"><ul class="toc-list" id="toc-list-left"></ul></div>
+            </div>
+            <div class="ad-block">
+                <div class="ad-label">Sponsored</div>
+                <div class="ad-area"><div style="padding:20px; text-align:center; color:#94a3b8; font-size:13px;">광고 준비 중</div></div>
+            </div>
         </aside>
 
+        <!-- 중앙 콘텐츠 영역 -->
         <div class="content-wrap">
-            <!-- [프리미엄 플로팅 글자크기 조절기] -->
             <div class="ffc-wrapper">
                 <div class="floating-font-control">
                     <span class="ffc-title">Aa</span>
-                    <button type="button" class="ffc-btn" id="btn-zoom-in" aria-label="크게" title="글자 크게">
-                        <span class="iconify" data-icon="carbon:add"></span>
-                    </button>
+                    <button type="button" class="ffc-btn" id="btn-zoom-in" aria-label="크게" title="글자 크게"><span class="iconify" data-icon="carbon:add"></span></button>
                     <span class="ffc-display" id="font-size-display">18</span>
-                    <button type="button" class="ffc-btn" id="btn-zoom-out" aria-label="작게" title="글자 작게">
-                        <span class="iconify" data-icon="carbon:subtract"></span>
-                    </button>
+                    <button type="button" class="ffc-btn" id="btn-zoom-out" aria-label="작게" title="글자 작게"><span class="iconify" data-icon="carbon:subtract"></span></button>
                 </div>
             </div>
 
             <span class="post-cat">미국주식</span>
             <h1>비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)</h1>
+
             <div class="meta">
-
-                <div class="meta-left"><div class="meta-avatar"><img src="https://blogglow.com/images/favicon.png" style="width: 20px;"></div><div class="meta-info"><span class="meta-author">Blogglow</span><time class="meta-date" datetime="2026-03-05T15:00:00.000Z">3일 전</time></div></div>
-
+                <div class="meta-left">
+                    <div class="meta-avatar"><img src="https://stockquill.com/images/favicon.png" style="width: 24px;"></div>
+                    <div class="meta-info"><span class="meta-author">StockQuill</span><time class="meta-date" datetime="2026-03-05T15:00:00.000Z">3일 전</time></div>
+                </div>
                 <div class="meta-share">
-                    <!-- 네이버 공유 (수정됨: 팝업 횟수 공유 적용) -->
-                    <a href="#" data-url="https://share.naver.com/web/shareView?url=https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html&title=비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)" onclick="window.handleCardClick(this); return false;" title="네이버 공유">
-                        <span class="iconify" data-icon="simple-icons:naver" style="font-size:15px;"></span>
-                    </a>
-
-                    <!-- 페이스북 공유 (추가됨) -->
-                    <a href="#" data-url="https://www.facebook.com/sharer/sharer.php?u=https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html" onclick="window.handleCardClick(this); return false;" title="페이스북 공유">
-                        <span class="iconify" data-icon="simple-icons:facebook" style="font-size:17px;"></span>
-                    </a>
-                    <!-- X (구 트위터) 공유 (수정됨: 팝업 횟수 공유 적용) -->
-                    <a href="#" data-url="https://x.com/intent/tweet?url=https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html&text=비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)" onclick="window.handleCardClick(this); return false;" title="X 공유">
-                        <span class="iconify" data-icon="simple-icons:x" style="font-size:17px;"></span>
-                    </a>
-                    <!-- 기기 기본 공유 -->
-                    <a href="#" onclick="if(navigator.share){navigator.share({title:'비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)', url:'https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html'});}else{alert('이 브라우저에서는 기기 기본 공유를 지원하지 않습니다.');}; return false;" title="공유하기">
-                        <span class="iconify" data-icon="carbon:share" style="font-size:20px;"></span>
-                    </a>
-                    <!-- 링크 복사 -->
-                    <a href="#" onclick="navigator.clipboard.writeText('https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html').then(()=>alert('✅ 링크가 복사되었습니다.')); return false;" title="링크 복사">
-                        <span class="iconify" data-icon="carbon:link" style="font-size:20px;"></span>
-                    </a>
-                    <!-- 인쇄(프린트) 추가 -->
-                    <a href="#" onclick="window.print(); return false;" title="인쇄하기">
-                        <span class="iconify" data-icon="carbon:printer" style="font-size:20px;"></span>
-                    </a>
+                    <a href="#" data-url="https://share.naver.com/web/shareView?url=https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html&title=비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)" onclick="window.handleCardClick(this); return false;" title="네이버 공유"><span class="iconify" data-icon="simple-icons:naver" style="font-size:15px;"></span></a>
+                    <a href="#" data-url="https://www.facebook.com/sharer/sharer.php?u=https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html" onclick="window.handleCardClick(this); return false;" title="페이스북 공유"><span class="iconify" data-icon="simple-icons:facebook" style="font-size:17px;"></span></a>
+                    <a href="#" data-url="https://x.com/intent/tweet?url=https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html&text=비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)" onclick="window.handleCardClick(this); return false;" title="X 공유"><span class="iconify" data-icon="simple-icons:x" style="font-size:17px;"></span></a>
+                    <a href="#" onclick="if(navigator.share){navigator.share({title:'비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)', url:'https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html'});}else{alert('이 브라우저에서는 기기 기본 공유를 지원하지 않습니다.');}; return false;" title="공유하기"><span class="iconify" data-icon="carbon:share" style="font-size:20px;"></span></a>
+                    <a href="#" onclick="navigator.clipboard.writeText('https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html').then(()=>alert('✅ 링크가 복사되었습니다.')); return false;" title="링크 복사"><span class="iconify" data-icon="carbon:link" style="font-size:20px;"></span></a>
+                    <a href="#" onclick="window.print(); return false;" title="인쇄하기"><span class="iconify" data-icon="carbon:printer" style="font-size:20px;"></span></a>
                 </div>
             </div>
-            <img src="https://stockquill.com/images/thumb-1772782671684.webp" alt="ethereum cryptocurrency blockchain digital asset concept" loading="eager" decoding="async" style="width:100%; border-radius:16px; margin-bottom:40px; box-shadow:0 8px 24px rgba(0,0,0,0.07);">
+
+            <img src="https://stockquill.com/images/thumb-1772782671684.webp" alt="비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)" loading="eager" decoding="async" style="width:100%; border-radius:24px; margin-bottom:40px; box-shadow:0 12px 30px rgba(0,0,0,0.08);">
 
             
                 <style>
@@ -689,7 +586,7 @@ textarea.cmt-input { height: 100px; resize: none; }
                     </div>
                 </div>
 
-            <article class="content"><blockquote class="bq"><p>"비트코인 채굴사에서 세계 최대 이더리움 금고로. BMNR의 진짜 베팅은 ETH 가격 그 자체입니다."</p><cite>StockQuill Market Insight</cite></blockquote><br><br><p class="body-text">안녕하십니까, StockQuill입니다.<br><br>오늘은 미국 증시에서 가장 독특한 포지셔닝을 가진 기업 중 하나인 비트마인 이머전 테크놀로지스(<code class="inline-code">BMNR</code>)를 집중 분석합니다. 이 회사는 원래 비트코인을 캐는 채굴 기업이었지만, 2025년 여름 전격적인 사업 전환을 단행했습니다. 지금은 이더리움(ETH)을 사들이고 쌓아두는 '이더리움 금고 회사'로 완전히 변신했습니다.<br><br>52주 최고가 161달러에서 현재 약 21달러 수준까지 급락한 주가. 그럼에도 시가총액은 92억 달러를 유지 중입니다. 과연 지금 가격이 기회인지, 아니면 함정인지 데이터로 낱낱이 살펴보겠습니다.</p><p class="emph-box">🔥 2026년 3월 기준 ETH 보유량: 4,473,587개 (시가 약 88억 달러) | 스테이킹 중: 3,040,483개 (약 60억 달러) | 총 보유 자산: 약 99억 달러</p><br><div class="img-wrap"><img src="https://plus.unsplash.com/premium_photo-1764691208171-962be723c358?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8JUVCJUFGJUI4JUVBJUI1JUFEJUVDJUEzJUJDJUVDJThCJTlEfGtvfDB8MHx8fDE3NzI3MjkxNTJ8MA&amp;ixlib=rb-4.1.0&amp;auto=format,compress&amp;q=70&amp;w=1000&amp;fm=webp" alt="ethereum cryptocurrency blockchain digital asset concept"></div><br><br><h2>📋 1. 기업 개요: 비트코인 채굴사에서 이더리움 금고로</h2><h3>👉 사업 전환의 배경과 핵심 전략</h3><p class="body-text">비트마인은 원래 미국 텍사스(페코스, 실버튼)와 트리니다드에서 비트코인을 채굴하던 회사였습니다. 그런데 2025년 여름, 톰 리(Tom Lee) 펀드스트랫 창업자가 회사 이사회 의장으로 합류하면서 전략이 180도 바뀌었습니다.<br><br>새 전략의 핵심은 이렇습니다: 비싼 채굴 장비와 전기료를 쓰는 대신, 주식 발행 등으로 자금을 조달해 이더리움을 직접 사들이자는 것입니다. 이는 마이클 세일러가 비트코인으로 한 전략(Strategy Inc., 과거 MicroStrategy)을 이더리움 버전으로 구현한 것입니다.</p><ul class="body-list"><li><strong>이더리움 트레저리 운영 (핵심 사업):</strong> ETH를 매입해 보유하고, 스테이킹(ETH를 네트워크에 예치해 이자를 받는 것, 은행 예금이자와 유사)을 통해 수익을 창출합니다.</li><li><strong>비트코인 마이닝 (기존 사업, 축소 중):</strong> 기존 채굴 시설을 유지하되 신규 투자는 중단하고 있습니다.</li><li><strong>디지털 자산 컨설팅:</strong> 다른 기업들의 암호화폐 전략 수립을 돕는 자문 서비스를 제공합니다.</li><li><strong>Beast Industries 투자 (문샷):</strong> 유튜브 창작자 MrBeast가 설립한 Beast Industries에 2억 달러를 투자했습니다.</li></ul><br><br><hr class="section-hr"><br><br><h2>📊 2. 핵심 보유 자산 현황: 숫자로 보는 BMNR의 실체</h2><h3>👉 세계 1위 이더리움 보유 상장사</h3><p class="body-text">2026년 3월 1일 기준, 비트마인의 이더리움 보유량은 4,473,587개입니다. 이더리움 전체 발행량의 약 3.71%에 해당하는 어마어마한 규모입니다. 쉽게 말해, 전 세계에서 유통되는 이더리움 100개 중 거의 4개가 이 회사 것이라는 뜻입니다.</p><div class="ai-official-wrapper" style="--ai-color: #400090; --ai-color-rgb: 64, 0, 144;">
+            <article class="content"><blockquote class="bq"><p>"비트코인 채굴사에서 세계 최대 이더리움 금고로. BMNR의 진짜 베팅은 ETH 가격 그 자체입니다."</p><cite>StockQuill Market Insight</cite></blockquote><br><br><p class="body-text">안녕하십니까, StockQuill입니다.<br><br>오늘은 미국 증시에서 가장 독특한 포지셔닝을 가진 기업 중 하나인 비트마인 이머전 테크놀로지스(<code class="inline-code">BMNR</code>)를 집중 분석합니다. 이 회사는 원래 비트코인을 캐는 채굴 기업이었지만, 2025년 여름 전격적인 사업 전환을 단행했습니다. 지금은 이더리움(ETH)을 사들이고 쌓아두는 '이더리움 금고 회사'로 완전히 변신했습니다.<br><br>52주 최고가 161달러에서 현재 약 21달러 수준까지 급락한 주가. 그럼에도 시가총액은 92억 달러를 유지 중입니다. 과연 지금 가격이 기회인지, 아니면 함정인지 데이터로 낱낱이 살펴보겠습니다.</p><p class="emph-box">🔥 2026년 3월 기준 ETH 보유량: 4,473,587개 (시가 약 88억 달러) | 스테이킹 중: 3,040,483개 (약 60억 달러) | 총 보유 자산: 약 99억 달러</p><br><div class="img-wrap"><img src="https://images.unsplash.com/photo-1648461311914-c5cec4e8a09f?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8JUVCJUFGJUI4JUVBJUI1JUFEJUVDJUEzJUJDJUVDJThCJTlEfGtvfDB8MHx8fDE3NzI3MjkxNTJ8MA&amp;ixlib=rb-4.1.0&amp;auto=format,compress&amp;q=70&amp;w=1000&amp;fm=webp" alt="ethereum cryptocurrency blockchain digital asset concept"></div><br><br><h2>📋 1. 기업 개요: 비트코인 채굴사에서 이더리움 금고로</h2><h3>👉 사업 전환의 배경과 핵심 전략</h3><p class="body-text">비트마인은 원래 미국 텍사스(페코스, 실버튼)와 트리니다드에서 비트코인을 채굴하던 회사였습니다. 그런데 2025년 여름, 톰 리(Tom Lee) 펀드스트랫 창업자가 회사 이사회 의장으로 합류하면서 전략이 180도 바뀌었습니다.<br><br>새 전략의 핵심은 이렇습니다: 비싼 채굴 장비와 전기료를 쓰는 대신, 주식 발행 등으로 자금을 조달해 이더리움을 직접 사들이자는 것입니다. 이는 마이클 세일러가 비트코인으로 한 전략(Strategy Inc., 과거 MicroStrategy)을 이더리움 버전으로 구현한 것입니다.</p><ul class="body-list"><li><strong>이더리움 트레저리 운영 (핵심 사업):</strong> ETH를 매입해 보유하고, 스테이킹(ETH를 네트워크에 예치해 이자를 받는 것, 은행 예금이자와 유사)을 통해 수익을 창출합니다.</li><li><strong>비트코인 마이닝 (기존 사업, 축소 중):</strong> 기존 채굴 시설을 유지하되 신규 투자는 중단하고 있습니다.</li><li><strong>디지털 자산 컨설팅:</strong> 다른 기업들의 암호화폐 전략 수립을 돕는 자문 서비스를 제공합니다.</li><li><strong>Beast Industries 투자 (문샷):</strong> 유튜브 창작자 MrBeast가 설립한 Beast Industries에 2억 달러를 투자했습니다.</li></ul><br><br><hr class="section-hr"><br><br><h2>📊 2. 핵심 보유 자산 현황: 숫자로 보는 BMNR의 실체</h2><h3>👉 세계 1위 이더리움 보유 상장사</h3><p class="body-text">2026년 3월 1일 기준, 비트마인의 이더리움 보유량은 4,473,587개입니다. 이더리움 전체 발행량의 약 3.71%에 해당하는 어마어마한 규모입니다. 쉽게 말해, 전 세계에서 유통되는 이더리움 100개 중 거의 4개가 이 회사 것이라는 뜻입니다.</p><div class="ai-official-wrapper" style="--ai-color: #400090; --ai-color-rgb: 64, 0, 144;">
                 <button class="open-modal-btn ai-banner-btn" data-modal-id="modal-1772782670630-0" type="button">
                     <div class="ai-banner-logo-wrap">
                         <img class="banner-logo-img" id="img-modal-1772782670630-0" src="https://t2.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;url=http://finance.yahoo.com&amp;size=128" onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=finance.yahoo.com&amp;sz=64';" alt="Yahoo Finance">
@@ -886,240 +783,112 @@ textarea.cmt-input { height: 100px; resize: none; }
               </dialog>
             </div><p class="body-text">비트마인과 자주 비교되는 기업은 비트코인 트레저리 전략으로 유명한 Strategy Inc.(구 MicroStrategy, 티커: MSTR)입니다. 두 회사는 '암호화폐를 사들이는 상장사'라는 공통점이 있지만, 보유 자산과 배수에서 큰 차이를 보입니다.</p><ul class="body-list"><li><strong>Strategy Inc.(MSTR):</strong> 비트코인 671,268개 보유(약 590억 달러). NAV 대비 수배의 프리미엄에 거래 중. '비트코인 레버리지 플레이'의 원조.</li><li><strong>비트마인(BMNR):</strong> 이더리움 447만개 보유(약 88억 달러). NAV 대비 20% 할인에 거래 중. '이더리움 레버리지 플레이'의 선두주자.</li><li><strong>샤프링크 게이밍(SBET):</strong> 이더리움 859,000개 보유(약 25억 달러). 비트마인 대비 규모가 5분의 1 수준.</li></ul><p class="body-text">MSTR 대비 BMNR이 할인 받는 이유 중 하나는 비트코인보다 이더리움의 기관 신뢰도가 낮고, 이더리움 생태계 성장에 대한 시장의 확신이 아직 비트코인만큼 강하지 않기 때문으로 분석됩니다.</p><br><br><hr class="section-hr"><br><br><h2>📅 11. 향후 체크포인트: 주가를 움직일 트리거들</h2><p class="body-text">앞으로 BMNR 주가에 직접적인 영향을 줄 수 있는 이벤트들을 정리했습니다. 투자를 고려한다면 아래 항목들을 반드시 주시해야 합니다.</p><ul class="body-list"><li><strong>MAVAN 스테이킹 솔루션 공식 출시:</strong> 2026년 1분기 목표. 출시 성공 시 수익 모델 현실화에 대한 기대감이 주가에 반영될 수 있습니다.</li><li><strong>ETH/USD 가격 동향:</strong> BMNR 주가와 이더리움 가격은 거의 동행합니다. 이더리움이 과거 고점(약 4,000달러)을 회복한다면 보유 자산 가치가 2배로 뛰게 됩니다.</li><li><strong>분기 실적 발표 및 ETH 보유량 업데이트:</strong> 회사는 주기적으로 ETH 보유량을 공시합니다. 취득 속도와 스테이킹 규모 증가 여부가 핵심 관찰 포인트입니다.</li><li><strong>미국 SEC 암호화폐 규제 발표:</strong> 특히 ETH 스테이킹의 법적 지위가 명확해지면 시장에 큰 영향을 줄 수 있습니다.</li><li><strong>이더리움 현물 ETF 자금 유입 현황:</strong> 기관 자금이 ETH ETF로 유입될수록 이더리움 가격 지지력이 높아집니다.</li></ul><br><br><hr class="section-hr"><br><br><h2>🎯 12. 결론 및 종합 투자 의견</h2><div class="tip-box"><strong>💡 StockQuill Summary: BMNR은 이더리움에 대한 확신이 있는 투자자를 위한 고위험 고수익 베팅</strong><ul><li>BMNR은 '이더리움 가격에 레버리지를 걸고 싶은 투자자'를 위한 상품입니다. ETH 직접 보유 대비 변동성이 훨씬 크습니다.</li><li>현재 NAV 대비 20% 할인(0.80배)은 단순 자산 가치 관점에서 매력적이나, 지속적 영업 적자와 주식 희석 리스크를 함께 고려해야 합니다.</li><li>MAVAN 스테이킹 수익화 성공 여부가 2026년 사업 가치의 핵심 분기점입니다.</li><li>이더리움 시세에 극도로 민감한 주식으로, 포트폴리오 내 비중을 과도하게 늘리는 것은 신중해야 합니다.</li><li>52주 고점(161달러) 대비 현재가(21달러)는 87% 하락한 수준입니다. 반등 여력도 있지만, 추가 하락 가능성도 열려 있습니다.</li></ul></div><br><br><p class="ps-box"><strong>🚨 Disclaimer (면책조항)</strong><br><br>본 포스팅은 특정 종목에 대한 매수 및 매도 추천이 아니며, 제공된 정보는 사실과 다를 수 있습니다. 암호화폐 관련 주식은 일반 주식 대비 변동성이 매우 높으며, 원금 손실 위험이 있습니다. 모든 투자의 최종 판단과 책임은 투자자 본인에게 귀속됩니다. 반드시 본인만의 철저한 조사(DYOR, Do Your Own Research)를 진행하시기 바랍니다.</p><br><br></article>
 
-
-
-
-
-            <!-- 🟢 2. 저자 프로필 영역 (본문 직후) -->
-            <div style="margin: 50px 0 20px 0; padding: 24px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; display: flex; gap: 20px; align-items: center;">
-                <img src="https://stockquill.com/images/favicon.png" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" alt="StockQuill">
+            <!-- 저자 프로필 영역 -->
+            <div style="margin: 60px 0 30px 0; padding: 32px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 24px; display: flex; gap: 24px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                <img src="https://stockquill.com/images/favicon.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 1px solid #e2e8f0; padding: 4px;" alt="StockQuill">
                 <div>
-                    <div style="font-size: 13px; color: #10b981; font-weight: 800; margin-bottom: 4px; letter-spacing: 1px;">MARKET ANALYST</div>
-                    <div style="font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">StockQuill (스톡퀼)</div>
-                    <div style="font-size: 14px; color: #475569; line-height: 1.5;">기업의 재무 데이터와 글로벌 매크로 지표를 바탕으로 객관적인 종목 분석을 제공합니다.</div>
+                    <div style="font-size: 12px; color: var(--primary); font-weight: 800; margin-bottom: 6px; letter-spacing: 0.1em; text-transform: uppercase;">Market Analyst</div>
+                    <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">StockQuill (스톡퀼)</div>
+                    <div style="font-size: 14.5px; color: #475569; line-height: 1.6;">기업의 재무 데이터와 글로벌 매크로 지표를 바탕으로 객관적이고 깊이 있는 종목 분석을 제공합니다.</div>
                 </div>
             </div>
 
-            <!-- 🟢 3. 면책 조항 (주식 특화) -->
-            <div style="margin-bottom: 40px; padding: 18px; background: #fff1f2; border-left: 4px solid #f43f5e; border-radius: 0 8px 8px 0; font-size: 13px; color: #881337; line-height: 1.6; text-align: justify;">
-                <strong>⚠️ 투자 유의 및 면책 조항 (Disclaimer) :</strong> 본 블로그에서 제공하는 모든 종목 분석, 목표가, 시장 전망 등은 작성자의 개인적인 의견이며 <strong>매수/매도 추천을 의미하지 않습니다.</strong> 정보의 정확성이나 완전성을 보장할 수 없으며, 본 정보를 바탕으로 한 모든 투자의 최종 판단과 결과에 대한 법적 책임은 오직 <strong>투자자 본인</strong>에게 귀속됩니다. 투자는 반드시 본인의 철저한 조사(DYOR) 하에 진행하시기 바랍니다.
+            <!-- 면책 조항 -->
+            <div style="margin-bottom: 50px; padding: 20px 24px; background: #f8fafc; border-radius: 16px; font-size: 13.5px; color: #64748b; line-height: 1.6; border: 1px solid #e2e8f0;">
+                <strong style="color: #0f172a;">⚠️ Disclaimer (면책 조항) :</strong> 본 블로그에서 제공하는 모든 종목 분석, 목표가, 시장 전망 등은 작성자의 개인적인 의견이며 <strong>매수/매도 추천을 의미하지 않습니다.</strong> 정보의 정확성이나 완전성을 보장할 수 없으며, 본 정보를 바탕으로 한 모든 투자의 최종 판단과 결과에 대한 법적 책임은 오직 <strong>투자자 본인</strong>에게 귀속됩니다. 투자는 반드시 본인의 철저한 조사(DYOR) 하에 진행하시기 바랍니다.
             </div>
 
-
-                 <!-- 🟢 나만의 커스텀 댓글 시스템 -->
+            <!-- 나만의 커스텀 댓글 시스템 -->
             <div class="cmt-section">
                 <div class="cmt-title">
                     <span class="iconify" data-icon="carbon:chat" style="color: #3b82f6; font-size: 24px;"></span>
                     자유롭게 의견을 남겨주세요
                 </div>
-
-                <!-- 댓글 입력 폼 -->
                 <div class="cmt-form">
                     <div class="cmt-form-row">
-                        <div>
-                            <label class="cmt-label">닉네임</label>
-                            <input type="text" id="cmt-name" class="cmt-input" placeholder="성함 또는 별명">
-                        </div>
-                        <div>
-                            <label class="cmt-label">이메일 (비공개)</label>
-                            <input type="email" id="cmt-email" class="cmt-input" placeholder="알림받을 이메일">
-                        </div>
+                        <div><label class="cmt-label">닉네임</label><input type="text" id="cmt-name" class="cmt-input" placeholder="성함 또는 별명"></div>
+                        <div><label class="cmt-label">이메일 (비공개)</label><input type="email" id="cmt-email" class="cmt-input" placeholder="알림받을 이메일"></div>
                     </div>
-                    <div style="margin-bottom: 16px;">
-                        <label class="cmt-label">내용</label>
-                        <textarea id="cmt-content" class="cmt-input" placeholder="소중한 댓글을 남겨주세요. 관리자 승인 후 노출됩니다."></textarea>
-                    </div>
+                    <div style="margin-bottom: 16px;"><label class="cmt-label">내용</label><textarea id="cmt-content" class="cmt-input" placeholder="소중한 댓글을 남겨주세요. 관리자 승인 후 노출됩니다."></textarea></div>
                     <button type="button" onclick="submitComment()" id="btn-cmt-submit" class="cmt-submit-btn">댓글 등록하기</button>
                 </div>
-
-                <!-- 댓글 목록 출력 영역 -->
-                <div id="comment-list" class="cmt-list">
-                    <p class="cmt-empty">댓글을 불러오는 중...</p>
-                </div>
+                <div id="comment-list" class="cmt-list"><p class="cmt-empty">댓글을 불러오는 중...</p></div>
             </div>
 
             <script>
             const GAS_URL = "https://script.google.com/macros/s/AKfycbwovSaNIjZZX_Bj_ScpkhJwEstQj0VRefSKJ69DXZK7URRk0vxEJehL6VYiOnhYZ1wXSg/exec";
             const PAGE_ID = window.location.pathname;
-
-            // 날짜 포맷팅
-            function formatCmtDate(isoStr) {
-                if(!isoStr) return '';
-                const d = new Date(isoStr);
-                if(isNaN(d)) return isoStr;
-                const yyyy = d.getFullYear();
-                const mm = String(d.getMonth() + 1).padStart(2, '0');
-                const dd = String(d.getDate()).padStart(2, '0');
-                const h = String(d.getHours()).padStart(2, '0');
-                const min = String(d.getMinutes()).padStart(2, '0');
-                return yyyy + '.' + mm + '.' + dd + ' ' + h + ':' + min;
-            }
-
-            // ❤️ 로컬 스토리지 & 구글 시트 연동 좋아요 토글
-            function toggleLike(btn) {
-                const icon = btn.querySelector('.like-icon');
-                const countSpan = btn.querySelector('.like-count');
-                let count = parseInt(countSpan.innerText) || 0;
-
-                const cmtDate = btn.getAttribute('data-date');
-                const cmtName = btn.getAttribute('data-name');
-                const likeKey = 'stockquill_like_' + PAGE_ID + '_' + cmtDate;
-
-                let action = "like";
-
-                if (btn.dataset.liked === 'true') {
-                    // 좋아요 취소
-                    action = "unlike";
-                    btn.dataset.liked = 'false';
-                    btn.classList.remove('liked');
-                    icon.setAttribute('data-icon', 'carbon:favorite');
-                    countSpan.innerText = Math.max(0, count - 1);
-                    localStorage.removeItem(likeKey);
-                } else {
-                    // 좋아요 추가
-                    action = "like";
-                    btn.dataset.liked = 'true';
-                    btn.classList.add('liked');
-                    icon.setAttribute('data-icon', 'carbon:favorite-filled');
-                    countSpan.innerText = count + 1;
-                    localStorage.setItem(likeKey, 'true');
-                }
-
-                // 구글 시트에 좋아요 기록 백그라운드 전송
-                fetch(GAS_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ action: action, pageId: PAGE_ID, date: cmtDate, name: cmtName })
-                }).catch(err => console.error(err));
-            }
-
-            // 댓글 불러오기
-            function loadComments() {
-                fetch(GAS_URL + "?pageId=" + encodeURIComponent(PAGE_ID))
-                .then(res => res.json())
-                .then(data => {
-                    const listEl = document.getElementById('comment-list');
-                    if(data.length === 0) {
-                        listEl.innerHTML = '<p class="cmt-empty">아직 댓글이 없습니다. 첫 번째 의견을 남겨보세요!</p>';
-                        return;
-                    }
-
-                    listEl.innerHTML = data.map(c => {
-                        const cleanDate = formatCmtDate(c.date);
-                        const contentHtml = (c.content || '').replace(/\n/g, '<br>');
-
-                        // 로컬스토리지에서 확인
-                        const likeKey = 'blogglow_like_' + PAGE_ID + '_' + c.date;
-                        const isLiked = localStorage.getItem(likeKey) === 'true';
-
-                        const likeClass = isLiked ? 'liked' : '';
-                        const likeIcon = isLiked ? 'carbon:favorite-filled' : 'carbon:favorite';
-                        const likesCount = c.likes || 0;
-
-                        return `
-                        <div class="cmt-item">
-                            <div class="cmt-avatar">
-                                <span class="iconify" data-icon="carbon:user-filled" style="font-size:24px;"></span>
-                            </div>
-                            <div class="cmt-body">
-                                <div class="cmt-header">
-                                    <span class="cmt-name">${c.name}</span>
-                                    <span class="cmt-date">${cleanDate}</span>
-                                </div>
-                                <div class="cmt-text">
-                                    ${contentHtml}
-                                </div>
-                                <div class="cmt-actions">
-                                    <button type="button" class="cmt-action-btn ${likeClass}"
-                                        onclick="toggleLike(this)"
-                                        data-date="${c.date}"
-                                        data-name="${c.name}"
-                                        data-liked="${isLiked}">
-                                        <span class="iconify like-icon" data-icon="${likeIcon}" style="font-size:15px;"></span>
-                                        <span class="like-count">${likesCount}</span>
-                                    </button>
-                                    <button type="button" class="cmt-action-btn" onclick="alert('답글 기능은 준비 중입니다.')">
-                                        <span class="iconify" data-icon="carbon:reply" style="font-size:15px;"></span> 답글
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    }).join('');
-                })
-                .catch(err => console.error('댓글 로딩 에러:', err));
-            }
-
-            // 댓글 등록하기
-            function submitComment() {
-                const name = document.getElementById('cmt-name').value.trim();
-                const content = document.getElementById('cmt-content').value.trim();
-                const btn = document.getElementById('btn-cmt-submit');
-
-                if(!name || !content) { alert('이름과 내용을 입력해주세요.'); return; }
-
-                btn.innerText = "등록 중..."; btn.disabled = true;
-
-                fetch(GAS_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ pageId: PAGE_ID, name: name, content: content })
-                })
-                .then(() => {
-                    alert('✅ 댓글이 접수되었습니다! (관리자 승인 후 노출됩니다)');
-                    document.getElementById('cmt-name').value = '';
-                    document.getElementById('cmt-content').value = '';
-                })
-                .catch(err => {
-                    alert('❌ 통신 오류가 발생했습니다.');
-                    console.error(err);
-                })
-                .finally(() => {
-                    btn.innerText = "댓글 등록하기"; btn.disabled = false;
-                });
-            }
-
+            function formatCmtDate(isoStr) { if(!isoStr) return ''; const d = new Date(isoStr); if(isNaN(d)) return isoStr; const yyyy = d.getFullYear(); const mm = String(d.getMonth() + 1).padStart(2, '0'); const dd = String(d.getDate()).padStart(2, '0'); const h = String(d.getHours()).padStart(2, '0'); const min = String(d.getMinutes()).padStart(2, '0'); return yyyy + '.' + mm + '.' + dd + ' ' + h + ':' + min; }
+            function toggleLike(btn) { const icon = btn.querySelector('.like-icon'); const countSpan = btn.querySelector('.like-count'); let count = parseInt(countSpan.innerText) || 0; const cmtDate = btn.getAttribute('data-date'); const cmtName = btn.getAttribute('data-name'); const likeKey = 'stockquill_like_' + PAGE_ID + '_' + cmtDate; let action = "like"; if (btn.dataset.liked === 'true') { action = "unlike"; btn.dataset.liked = 'false'; btn.classList.remove('liked'); icon.setAttribute('data-icon', 'carbon:favorite'); countSpan.innerText = Math.max(0, count - 1); localStorage.removeItem(likeKey); } else { action = "like"; btn.dataset.liked = 'true'; btn.classList.add('liked'); icon.setAttribute('data-icon', 'carbon:favorite-filled'); countSpan.innerText = count + 1; localStorage.setItem(likeKey, 'true'); } fetch(GAS_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ action: action, pageId: PAGE_ID, date: cmtDate, name: cmtName }) }).catch(err => console.error(err)); }
+            function loadComments() { fetch(GAS_URL + "?pageId=" + encodeURIComponent(PAGE_ID)).then(res => res.json()).then(data => { const listEl = document.getElementById('comment-list'); if(data.length === 0) { listEl.innerHTML = '<p class="cmt-empty">아직 댓글이 없습니다. 첫 번째 의견을 남겨보세요!</p>'; return; } listEl.innerHTML = data.map(c => { const cleanDate = formatCmtDate(c.date); const contentHtml = (c.content || '').replace(/\n/g, '<br>'); const likeKey = 'blogglow_like_' + PAGE_ID + '_' + c.date; const isLiked = localStorage.getItem(likeKey) === 'true'; const likeClass = isLiked ? 'liked' : ''; const likeIcon = isLiked ? 'carbon:favorite-filled' : 'carbon:favorite'; const likesCount = c.likes || 0; return `<div class="cmt-item"><div class="cmt-avatar"><span class="iconify" data-icon="carbon:user-filled" style="font-size:24px;"></span></div><div class="cmt-body"><div class="cmt-header"><span class="cmt-name">${c.name}</span><span class="cmt-date">${cleanDate}</span></div><div class="cmt-text">${contentHtml}</div><div class="cmt-actions"><button type="button" class="cmt-action-btn ${likeClass}" onclick="toggleLike(this)" data-date="${c.date}" data-name="${c.name}" data-liked="${isLiked}"><span class="iconify like-icon" data-icon="${likeIcon}" style="font-size:15px;"></span><span class="like-count">${likesCount}</span></button><button type="button" class="cmt-action-btn" onclick="alert('답글 기능은 준비 중입니다.')"><span class="iconify" data-icon="carbon:reply" style="font-size:15px;"></span> 답글</button></div></div></div>`; }).join(''); }).catch(err => console.error('댓글 로딩 에러:', err)); }
+            function submitComment() { const name = document.getElementById('cmt-name').value.trim(); const content = document.getElementById('cmt-content').value.trim(); const btn = document.getElementById('btn-cmt-submit'); if(!name || !content) { alert('이름과 내용을 입력해주세요.'); return; } btn.innerText = "등록 중..."; btn.disabled = true; fetch(GAS_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ pageId: PAGE_ID, name: name, content: content }) }).then(() => { alert('✅ 댓글이 접수되었습니다! (관리자 승인 후 노출됩니다)'); document.getElementById('cmt-name').value = ''; document.getElementById('cmt-content').value = ''; }).catch(err => { alert('❌ 통신 오류가 발생했습니다.'); console.error(err); }).finally(() => { btn.innerText = "댓글 등록하기"; btn.disabled = false; }); }
             loadComments();
             </script>
 
-
-
-            <!-- 🟢 4. 연관 콘텐츠 -->
-            <div class="related-section" style="margin-top: 40px;">
+            <!-- 연관 콘텐츠 -->
+            <div class="related-section">
                 <div class="related-heading-wrap">
-                    <div class="related-heading"><span class="iconify" data-icon="carbon:document-multiple-01" style="color:#fbbf24; font-size:24px;"></span> 연관 콘텐츠도 준비했어요</div>
-                    <a href="https://stockquill.com/index.html" class="see-more">See more posts ></a>
+                    <div class="related-heading"><span class="iconify" data-icon="carbon:document-multiple-01" style="color:var(--primary); font-size:24px;"></span> 연관 아티클</div>
+                    <a href="https://stockquill.com/index.html" class="see-more">전체 보기 ></a>
                 </div>
-                <div class="related-list"></div>
+                <div class="related-list">
+                <a href="https://stockquill.com/post/테슬라TSLA-2026년-주가-전망-및-로보택시-밸류에이션-심층-분석.html" class="related-item">
+                    <div class="rc-text-wrap">
+                        <div class="rc-title">테슬라(TSLA) 2026년 주가 전망 및 로보택시 밸류에이션 심층 분석 (지금 사야 할까, 기다려야 할까?)</div>
+                        <div class="rc-excerpt">뱅크오브아메리카 목표주가 460달러 재개와 로보택시 확장, 옵티머스 Gen3 공개 임박까지. 테슬라의 2026년 투자 논리와 리스크를 데이터로 냉정하게 분석합니다.</div>
+                        <div class="rc-date">2026. 3. 6.</div>
+                    </div>
+                    <div class="rc-thumb-wrap">
+                        <img src="https://stockquill.com/images/thumb-1772782747496.webp" class="rc-thumb" alt="">
+                    </div>
+                </a></div>
             </div>
 
+        </div> <!-- 중앙 영역 끝 -->
 
-
-        </div> <!-- ✅ [핵심] 중앙 영역(.content-wrap)이 여기서 닫혀야 합니다! -->
-
+        <!-- 🚀 우측 사이드바 (하이엔드 디자인) -->
         <aside class="sidebar sidebar-right">
           <div class="widget">
-              <div class="widget-title">📚 이 시리즈의 다른 글</div>
+              <div class="widget-title">
+                  <span class="iconify" data-icon="carbon:folders" style="font-size:18px; color:var(--primary);"></span> SERIES
+              </div>
               <div class="widget-body"><ul class="series-widget-list">
                 <li>
                     <a href="https://stockquill.com/post/비트마인BMNR-이더리움-트레저리-전략-심층-분석.html" class="series-widget-item current">
                         <img src="https://stockquill.com/images/thumb-1772782671684.webp" class="sw-thumb" alt="">
                         <div class="sw-info"><div class="sw-title">비트마인(BMNR) 이더리움 트레저리 전략 심층 분석 (세계 최대 ETH 보유 기업의 진짜 가치는?)</div></div>
                     </a>
+                </li>
+                <li>
+                    <a href="https://stockquill.com/post/테슬라TSLA-2026년-주가-전망-및-로보택시-밸류에이션-심층-분석.html" class="series-widget-item ">
+                        <img src="https://stockquill.com/images/thumb-1772782747496.webp" class="sw-thumb" alt="">
+                        <div class="sw-info"><div class="sw-title">테슬라(TSLA) 2026년 주가 전망 및 로보택시 밸류에이션 심층 분석 (지금 사야 할까, 기다려야 할까?)</div></div>
+                    </a>
                 </li></ul></div>
           </div>
 
-          <!-- 여기에 뉴스레터 코드 삽입 -->
-          <div class="newsletter-card">
-              <h3>Blogglow Briefing</h3>
-              <p>금융 전문가들이 큐레이션 한 경제 동향과 절세 리포트를 매주 이메일로 받아보세요.</p>
-              <input type="email" id="subs-email" class="newsletter-input" placeholder="이메일 주소를 입력해주세요">
-              <button type="button" class="newsletter-btn">무료로 구독하기</button>
-          </div>
+          
+    <div class="widget" style="background: linear-gradient(145deg, #1e293b, #0f172a); border: none; position: relative; overflow: hidden;">
+        <!-- 배경 글래스모피즘 라이트 효과 -->
+        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: #3b82f6; border-radius: 50%; filter: blur(60px); opacity: 0.4; pointer-events: none;"></div>
 
-          <div class="ad-block"><div class="ad-label">ADVERTISEMENT</div><div class="ad-area"><div style="width:100%; display:block;">
+        <div class="widget-body" style="position: relative; z-index: 1; padding: 28px 24px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                <span class="iconify" data-icon="carbon:send-alt-filled" style="color: #3b82f6; font-size: 24px;"></span>
+                <h3 style="font-size: 18px; font-weight: 800; margin: 0; color: #ffffff; letter-spacing: -0.02em;">Weekly Briefing</h3>
+            </div>
+            <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 20px; word-break: keep-all;">금융 전문가들이 큐레이션 한 경제 동향과 절세 리포트를 매주 이메일로 받아보세요.</p>
+            <div class="newsletter-card" style="margin:0; padding:0; background:transparent; border:none;">
+                <input type="email" id="subs-email" class="newsletter-input" placeholder="이메일 주소 입력" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #ffffff;">
+                <button type="button" class="newsletter-btn" style="background: #3b82f6; color: #ffffff; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">무료로 구독하기</button>
+            </div>
+        </div>
+    </div>
+
+
+          <div class="ad-block">
+              <div class="ad-label">Sponsored</div>
+              <div class="ad-area"><div style="width:100%; display:block;">
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:12px 12px 4px;">
                 <a href="https://link.coupang.com/a/dRuXiD" target="_blank" rel="noopener sponsored"
                    style="display:block; aspect-ratio:1; overflow:hidden; border-radius:6px; border:1px solid #e2e8f0; position:relative;"
@@ -1132,7 +901,8 @@ textarea.cmt-input { height: 100px; resize: none; }
                 </a>
             </div>
                     <div style="padding:10px 14px; font-size:10px; color:#adb5bd; text-align:center; line-height:1.5; letter-spacing:-0.03em; border-top:1px dashed #f1f3f5; margin-top:8px;">제휴 마케팅 활동을 통해 <br>운영 수익의 일부가 발생할 수 있습니다.</div>
-                </div></div></div>
+                </div></div>
+          </div>
       </aside>
     </main>
 
@@ -1149,7 +919,7 @@ textarea.cmt-input { height: 100px; resize: none; }
 </footer>
 
 <script>
-var _0x949740=_0x142f;(function(_0x36f903,_0x53ac88){var _0x4d529b=_0x142f,_0x5e9dbb=_0x36f903();while(!![]){try{var _0x2c6173=parseInt(_0x4d529b(0xf1))/(0x1*0x1415+-0x1059+-0x3bb)+parseInt(_0x4d529b(0x135))/(-0x183b*0x1+-0x6b8+-0x19*-0x13d)+parseInt(_0x4d529b(0x124))/(0x11*-0x1f6+0x1768+0x9f1)+-parseInt(_0x4d529b(0x13c))/(0x15b4+-0x1190*-0x2+0x4bc*-0xc)+-parseInt(_0x4d529b(0xe3))/(-0x22da+-0x1b17+-0xe*-0x46d)+parseInt(_0x4d529b(0x101))/(-0x41*0xe+-0x1*-0x1b9f+-0x180b)*(parseInt(_0x4d529b(0xf9))/(-0x1c*-0x115+0x1*0x1d29+-0x3b6e))+parseInt(_0x4d529b(0x112))/(0x385+0xa96+0x4b1*-0x3)*(parseInt(_0x4d529b(0x13e))/(-0x19de+-0x1*0x267b+0x4062));if(_0x2c6173===_0x53ac88)break;else _0x5e9dbb['push'](_0x5e9dbb['shift']());}catch(_0x5eb064){_0x5e9dbb['push'](_0x5e9dbb['shift']());}}}(_0xe239,0x8c27c+0x5903f*-0x3+0x10fd6*0x10));function _0x142f(_0x5511c4,_0x4328f3){_0x5511c4=_0x5511c4-(-0x23d5+0x13a1+0x10dc);var _0x24b047=_0xe239();var _0x404bdb=_0x24b047[_0x5511c4];if(_0x142f['tsGIAc']===undefined){var _0xad35ad=function(_0x1491c0){var _0x51b56d='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';var _0x235417='',_0x5be2bc='';for(var _0x3ab206=0x1f6d+0xce5+-0x2c52,_0x33ac79,_0x2dcb88,_0x1dca0d=0x680+0x1fbd+0x3*-0xcbf;_0x2dcb88=_0x1491c0['charAt'](_0x1dca0d++);~_0x2dcb88&&(_0x33ac79=_0x3ab206%(-0x1dd1+-0xb*-0x355+-0x2*0x369)?_0x33ac79*(-0xc96+-0x1967+0x263d)+_0x2dcb88:_0x2dcb88,_0x3ab206++%(0x4ee+-0xad9+0x5ef))?_0x235417+=String['fromCharCode'](0x6*-0x44f+-0x19*0x103+0x3424&_0x33ac79>>(-(-0x64d*-0x2+-0xb9c+0x9*-0x1c)*_0x3ab206&0x1*0x184b+-0x198*-0x6+0x1*-0x21d5)):0xc92+-0x5*-0x5bf+0x1*-0x294d){_0x2dcb88=_0x51b56d['indexOf'](_0x2dcb88);}for(var _0xd05e59=-0xaac+0x1*-0x22f3+-0x2af*-0x11,_0x1482ba=_0x235417['length'];_0xd05e59<_0x1482ba;_0xd05e59++){_0x5be2bc+='%'+('00'+_0x235417['charCodeAt'](_0xd05e59)['toString'](0x329*0x7+0x1a19*-0x1+0x40a))['slice'](-(-0x23bc+-0x1c9c+-0x405a*-0x1));}return decodeURIComponent(_0x5be2bc);};_0x142f['DZneMY']=_0xad35ad,_0x142f['HBfoJr']={},_0x142f['tsGIAc']=!![];}var _0x39f4e0=_0x24b047[0x46a+-0x1f5a+0x1af0],_0x42362c=_0x5511c4+_0x39f4e0,_0x761371=_0x142f['HBfoJr'][_0x42362c];return!_0x761371?(_0x404bdb=_0x142f['DZneMY'](_0x404bdb),_0x142f['HBfoJr'][_0x42362c]=_0x404bdb):_0x404bdb=_0x761371,_0x404bdb;}function _0xe239(){var _0x1a474d=['ndeWodHOvvvIueG','s0voquO','qxfnuuW','zgLZywjSzwq','DgfYz2v0','lM5LD3nSzxr0zxiTAw5WDxq','vvPqBeC','yNrUlxPVB20TAw4','ndCYntu1m3fRsNP2rW','C3bSAxq','C3rYAw5NAwz5','shHrwfi','wwPjD0q','DgHLBG','sxrytfu','vwDpu0O','nKnqvxfKBq','B25JBgLJAW','lhjLC2L6ywjSzt15zxmSC2nYB2XSyMfYCZ15zxm','C3rVCfbYB3bHz2f0Aw9U','BMjNu2y','lgHLAwDODd0','C3HICgK','A0XKAfy','s2Dwzxu','C0v2CMO','CxvLCNLtzwXLy3rVCKfSBa','ywrjtLO','ywfts1a','Dgv4Dc9WBgfPBG','zgf0ys1TB2rHBc1Pza','Dg9JlwXPC3qTBgvMDa','Dgv4DenVBNrLBNq','mtm2s1n6twDN','rwjIueO','tNrus0q','C2nYzwvU','ChjLDMvUDerLzMf1Bhq','wNrMDMC','lhrVCd0','z2v0qxr0CMLIDxrL','zgf0yxnLDa','BKTbC2m','B3rHCLO','t3ftEKK','yM9KEq','y2jurhO','shvZruO','lMnSB3nLlw1VzgfSlwj0BG','qMT3txO','z2v0rwXLBwvUDej5swq','mta4mJy3DLPKreTv','C2v0sxrLBq','uhrAChG','y3nZvgv4Da','quTpAu4','y2XPy2S','v2TNww4','CNfkzgu','vgHuqK4','re9nq29UDgvUDeXVywrLza','lgXLzNq9','y2XVC2vK','quL4sxK','yMjVsKi','wxzZDfa','ALLHAMi','CMLNAhq','mtu5otGXnKTeBLP5zq','AgvPz2H0','v21LALC','ywn0AxzL','yMXVz19MB250x3nPEMu','yM90Dg9T','wLbwvvq','ndy4mZe2oef6u2XqsG','AgfUzgXLq2fYzenSAwnR','mJu2ntyZqMTfvMLN','y2XPzw50wa','zu56A1u','sxnsAxm','BgvMDa','B3bLBG','Dwflzuy','mJz8nhWXFde5FdiXFde3FdiYFdi1Fdi0Fde0FdiWFdj8mJD8mhW3FdeWFde4Fdv8oxWXmNW4FdiZFdeZFdn8mtz8mtf8nNWXnq','z2v0sxrLBq','ExfOBfq','Dg9W','turQrNy','vg5yBu4','pgeGAhjLzJ0IiW','lMnVBNrLBNq','yMHIy2K','DMfSDwu','ENnRC2O','Ehf5r2K','D2LKDgG9','4P2mioYyPoULMoQWGcdRSjZSG53TLOJSIRxRI4JRI6qUioYEOoYlNcdTM4qG64UK7iUCioYlNoUpHo2vToYJVoYeUoYALc4','ywrKrxzLBNrmAxn0zw5LCG','u2v0swu','uhjjqMq','Bs1Tzw51lxrVz2DSzq','pc9HpG','tfjqufK','runNt2K','Bw9KywXjza','t0j6uNC','zKDbvei','CKjwB28','z1DdtvG','zM9UDfnPEMu','D2LKDgG','rgHKwvy','s2vSu3q','y291CgfUz19ZAg93BL90Aw1L','qKHLr1q','uxnIBfe','z2XVyMfSx2nSAwnRx2nVDw50','turkuu4','uuDrqLe','DhjPBq','x2jSyw5R','BM93','CxvLCNLtzwXLy3rVCG','vxPHq2m','y2XVC2vZDa','AwXmAuW','lM9Wzw4TBw9KywWTyNrU','rLbcAhq','lM5LD3nSzxr0zxiTyNrU','7yYD7jEfioYWQoUlQoYDHcdTLBtSOjZTLBtSO7ZSHlJSMPqU','y1rxzw8','CMvHzhLtDgf0zq','y2XHC3nmAxn0','ue9tva','7jIS67cu66w4ioYDToUPLoYDVcdSO7ZSHOZRPBWG7j6f66cL7zw07ko87is47jQulG','yxbWzw5Kq2HPBgq','y3jLyxrLrwXLBwvUDa','AvnsB0O','4PYfioQ1RoUpHsdSI6dSSQ3SNBqG7jMe66om65cq7iQ164Ui64UKiqRRP6tSO7WG7kkl7j2aioYGLEUZToULVcdRS7tRGRtRK5ZRPRtQSOZSMPqG8j+yIG','zM9JDxm','y2XVC2u','Ag1mzwm','BM8Ty29YCW','CxzAz2S','y2XPzw50wq','Bg9HzgLUzW','Dw5KzwzPBMvK','z2v0qM91BMrPBMDdBgLLBNrszwn0','mtm2mtq4meTzuMDWwq','zgf0ys11CMW','zM9UDc1ZAxPLlwrPC3bSyxK','yNrUlxPVB20TB3v0','ywjVDxq6yMXHBMS','CMvTB3zL','lMLUDgvYBgLUAY1JyxjK','uwXusxe','lM5LD3nSzxr0zxiTy2fYza','zfbzDgS','AgXPEMy','ywrK','zMLUywXSEq','zM9YrwfJAa'];_0xe239=function(){return _0x1a474d;};return _0xe239();}function initAll(){var _0x2ed6e1=_0x142f,_0x23e714={'sEvrj':function(_0x15791e,_0x523059){return _0x15791e+_0x523059;},'sxbpi':_0x2ed6e1(0x139),'IsRis':function(_0x3b80a4,_0xa59114){return _0x3b80a4<_0xa59114;},'QGQBQ':function(_0x1a00dd,_0x595337){return _0x1a00dd(_0x595337);},'nKAsc':function(_0x1c0843,_0x8e3bc0){return _0x1c0843>_0x8e3bc0;},'ECgOi':function(_0x34909d,_0x3bbf08){return _0x34909d(_0x3bbf08);},'gewSg':_0x2ed6e1(0xa9),'jcUKb':_0x2ed6e1(0xf8),'KelSt':_0x2ed6e1(0xe6),'yqhlT':_0x2ed6e1(0xe5),'PtZpx':function(_0x35b063,_0x3fe295){return _0x35b063||_0x3fe295;},'bboJB':_0x2ed6e1(0x138),'jYajb':'m-search-toggle','XWWAt':'global-search-box','nbgSf':_0x2ed6e1(0xb3),'TnXmN':'m-sidebar-close','XfBOx':function(_0x3a1708,_0x5dffb2){return _0x3a1708+_0x5dffb2;},'zddla':function(_0x4d6553,_0x16bcdb){return _0x4d6553+_0x16bcdb;},'KENAJ':_0x2ed6e1(0xa8),'QlTIq':_0x2ed6e1(0xb4),'xqyGi':_0x2ed6e1(0xcd),'ilLiL':'position:\x20fixed\x20!important;\x20top:\x2050%\x20!important;\x20left:\x2050%\x20!important;\x20transform:\x20translate(-50%,\x20-50%)\x20!important;\x20width:\x2090%\x20!important;\x20max-width:\x20480px\x20!important;\x20max-height:\x2085vh\x20!important;\x20margin:\x200\x20!important;\x20padding:\x200\x20!important;\x20border:\x20none\x20!important;\x20border-radius:\x2024px\x20!important;\x20background:\x20#ffffff\x20!important;\x20box-shadow:\x200\x2025px\x2050px\x20rgba(0,0,0,0.2)\x20!important;\x20overflow-y:\x20auto\x20!important;\x20z-index:\x2099999\x20!important;','eNzkU':_0x2ed6e1(0x121),'NtTKD':function(_0x304633,_0x3472ac){return _0x304633===_0x3472ac;},'hmLec':'DIALOG','hlizf':function(_0x4b93dc,_0x451236){return _0x4b93dc>_0x451236;},'zsksj':'무료로\x20구독하기','BHeGT':function(_0x4740ad,_0x2026ad){return _0x4740ad(_0x2026ad);},'HusEJ':_0x2ed6e1(0xeb),'otarZ':_0x2ed6e1(0xf6),'gWCMX':_0x2ed6e1(0xd5),'ThTBN':'신청\x20중...','kLdhV':function(_0x51b947,_0x118661,_0x2d45df){return _0x51b947(_0x118661,_0x2d45df);},'WmejW':'https://script.google.com/macros/s/AKfycbyBfXdXwkuGsRvkjJLBH_N8Y3mwty9Vonh2TFpLVbvuqN9OomptevdOZonFJNSlYNVKJQ/exec','AqMQL':_0x2ed6e1(0xd4),'MDJQN':_0x2ed6e1(0x110),'TaXML':_0x2ed6e1(0xcf)};(function _0x43094e(){var _0x29f1f0=_0x2ed6e1;const _0x420e10=document[_0x29f1f0(0xc9)](_0x23e714['gewSg']),_0x1b7e8b=document[_0x29f1f0(0x123)](_0x23e714['jcUKb']),_0x424c08=document['getElementById'](_0x23e714[_0x29f1f0(0xbf)]),_0x3fcfc8=document[_0x29f1f0(0x123)](_0x23e714[_0x29f1f0(0x147)]);if(_0x23e714[_0x29f1f0(0x126)](!_0x420e10,!_0x1b7e8b)||!_0x424c08)return;const _0x3dbc98=0x660+0x1*0x827+0xc3*-0x13,_0x573f4e=-0x237d*-0x1+0x930*0x1+0x1*-0x2c8f,_0x1b91c8=0x1c72*-0x1+-0x1439+0x30bd;let _0x1a1e68=_0x23e714['QGQBQ'](parseInt,localStorage[_0x29f1f0(0x146)](_0x23e714[_0x29f1f0(0x107)]))||_0x1b91c8;function _0x5b0e54(_0x556b7b){var _0x278e7e=_0x29f1f0;_0x420e10['style'][_0x278e7e(0xbc)]=_0x23e714['sEvrj'](_0x556b7b,'px');if(_0x3fcfc8)_0x3fcfc8[_0x278e7e(0x111)]=_0x556b7b;localStorage[_0x278e7e(0x125)](_0x23e714[_0x278e7e(0x107)],_0x556b7b);}_0x23e714[_0x29f1f0(0xc5)](_0x5b0e54,_0x1a1e68),_0x1b7e8b['onclick']=_0x29ecf2=>{var _0x4ac3c7=_0x29f1f0;_0x29ecf2[_0x4ac3c7(0x116)](),_0x29ecf2['stopPropagation']();if(_0x23e714[_0x4ac3c7(0x141)](_0x1a1e68,_0x573f4e))_0x23e714['QGQBQ'](_0x5b0e54,_0x1a1e68+=-0x708+-0x1*-0x1beb+-0x14e1);},_0x424c08[_0x29f1f0(0x102)]=_0x474a44=>{var _0xd92f87=_0x29f1f0;_0x474a44[_0xd92f87(0x116)](),_0x474a44[_0xd92f87(0x104)]();if(_0x23e714['nKAsc'](_0x1a1e68,_0x3dbc98))_0x23e714[_0xd92f87(0xb6)](_0x5b0e54,_0x1a1e68-=0x1d*-0x2f+-0xf6e*-0x1+-0x205*0x5);};}(),(function(){var _0xf9379f=_0x2ed6e1,_0x2ec205={'uaKeF':_0x23e714[_0xf9379f(0x131)]};const _0x5451d7=document['getElementById'](_0x23e714[_0xf9379f(0x133)]),_0x2170f3=document[_0xf9379f(0x123)](_0x23e714['XWWAt']),_0x5ac98a=document[_0xf9379f(0x123)](_0x23e714[_0xf9379f(0x105)]),_0x305d68=document[_0xf9379f(0x123)]('mobile-sidebar'),_0x7a361=document[_0xf9379f(0x123)]('sidebar-overlay'),_0x53bb75=document[_0xf9379f(0x123)](_0x23e714[_0xf9379f(0x14a)]);_0x5451d7&&(_0x5451d7[_0xf9379f(0x102)]=_0x2c3542=>{var _0x44ccce=_0xf9379f;_0x2c3542[_0x44ccce(0x104)](),_0x2170f3[_0x44ccce(0xd3)]['toggle'](_0x2ec205[_0x44ccce(0x144)]);});_0x5ac98a&&(_0x5ac98a[_0xf9379f(0x102)]=()=>{var _0x3c3b40=_0xf9379f;_0x305d68['classList'][_0x3c3b40(0xee)]('active'),_0x7a361['classList'][_0x3c3b40(0xee)](_0x2ec205[_0x3c3b40(0x144)]);});const _0x55bb22=()=>{var _0x3967e2=_0xf9379f;_0x305d68['classList'][_0x3967e2(0xe8)]('active'),_0x7a361[_0x3967e2(0xd3)][_0x3967e2(0xe8)](_0x3967e2(0x138));};if(_0x53bb75)_0x53bb75[_0xf9379f(0x102)]=_0x55bb22;if(_0x7a361)_0x7a361[_0xf9379f(0x102)]=_0x55bb22;}()));const _0x2eebd1=document[_0x2ed6e1(0x123)](_0x23e714[_0x2ed6e1(0xc4)]);document[_0x2ed6e1(0x10b)]('.content\x20h2')[_0x2ed6e1(0xf0)]((_0x4efd75,_0x149f7d)=>{var _0x2fcf38=_0x2ed6e1;if(_0x4efd75[_0x2fcf38(0xcb)](_0x2fcf38(0xe9)))return;_0x4efd75['id']='h-'+_0x149f7d;const _0x2f6da0=document[_0x2fcf38(0xd7)]('li');_0x2f6da0['innerHTML']=_0x23e714['XfBOx'](_0x23e714[_0x2fcf38(0x10a)](_0x23e714['zddla'](_0x23e714[_0x2fcf38(0xf2)],_0x4efd75['id'])+'\x22>',_0x4efd75[_0x2fcf38(0x111)][_0x2fcf38(0xc6)]()),_0x23e714[_0x2fcf38(0xea)]);if(_0x2eebd1)_0x2eebd1[_0x2fcf38(0xd6)](_0x2f6da0);}),document[_0x2ed6e1(0x11e)][_0x2ed6e1(0xb0)](_0x2ed6e1(0x129),function(_0x3be257){var _0x1711b1=_0x2ed6e1;const _0x62e9e8=_0x3be257[_0x1711b1(0xf5)][_0x1711b1(0xcb)](_0x23e714[_0x1711b1(0xad)]);if(_0x62e9e8){_0x3be257['preventDefault']();const _0x3301b3=document[_0x1711b1(0x123)](_0x62e9e8['dataset'][_0x1711b1(0xb7)]);_0x3301b3&&(_0x3301b3['showModal'](),_0x3301b3['style'][_0x1711b1(0x127)]=_0x23e714[_0x1711b1(0xcc)]);}const _0x14b53d=_0x3be257[_0x1711b1(0xf5)][_0x1711b1(0xcb)](_0x23e714[_0x1711b1(0x140)]);_0x14b53d&&document[_0x1711b1(0x123)](_0x14b53d[_0x1711b1(0x11a)][_0x1711b1(0xb7)])[_0x1711b1(0xdb)]();if(_0x23e714[_0x1711b1(0x114)](_0x3be257[_0x1711b1(0xf5)]['tagName'],_0x23e714[_0x1711b1(0xdc)])){const _0xf4a888=_0x3be257[_0x1711b1(0xf5)][_0x1711b1(0xe2)]();(_0x3be257[_0x1711b1(0x13f)]<_0xf4a888[_0x1711b1(0x142)]||_0x23e714[_0x1711b1(0x11b)](_0x3be257[_0x1711b1(0x13f)],_0xf4a888[_0x1711b1(0x134)])||_0x3be257[_0x1711b1(0xdf)]<_0xf4a888[_0x1711b1(0x148)]||_0x23e714[_0x1711b1(0xed)](_0x3be257[_0x1711b1(0xdf)],_0xf4a888[_0x1711b1(0x13a)]))&&_0x3be257['target'][_0x1711b1(0xdb)]();}}),document['querySelectorAll'](_0x23e714['TaXML'])[_0x2ed6e1(0xf0)](function(_0x54f461){var _0x1f0812=_0x2ed6e1,_0x55e0ee={'rqJde':_0x23e714[_0x1f0812(0xac)],'OBzRw':function(_0x490912,_0x2126d8){var _0x3b60fc=_0x1f0812;return _0x23e714[_0x3b60fc(0xc1)](_0x490912,_0x2126d8);},'qvZgk':_0x23e714[_0x1f0812(0x120)],'BkwMz':_0x23e714[_0x1f0812(0x11c)],'bhbci':_0x23e714[_0x1f0812(0xbb)],'WkgYn':_0x23e714[_0x1f0812(0x12c)],'UgOSJ':function(_0x152f0b,_0x8ef411,_0xb0b326){var _0x58fa4=_0x1f0812;return _0x23e714[_0x58fa4(0x108)](_0x152f0b,_0x8ef411,_0xb0b326);},'cTWeo':_0x23e714[_0x1f0812(0x137)],'ZwKqM':_0x23e714[_0x1f0812(0xf3)],'UZPlG':_0x1f0812(0x10e)};_0x54f461['addEventListener'](_0x1f0812(0x129),function(_0x15c365){var _0x2003f7=_0x1f0812,_0x2744f4={'VvTQa':function(_0x5b311f,_0x4696d6){var _0x3ace57=_0x142f;return _0x55e0ee[_0x3ace57(0xb8)](_0x5b311f,_0x4696d6);},'grEwg':_0x2003f7(0xaf)},_0x23f5fc=_0x15c365[_0x2003f7(0xf5)][_0x2003f7(0xcb)](_0x55e0ee[_0x2003f7(0xde)]),_0x2fda5b=_0x23f5fc?_0x23f5fc[_0x2003f7(0xc9)](_0x55e0ee[_0x2003f7(0x122)]):null,_0x306feb=_0x2fda5b?_0x2fda5b[_0x2003f7(0xab)]:'',_0x58786a=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!_0x306feb||!_0x58786a['test'](_0x306feb)){alert(_0x55e0ee[_0x2003f7(0xaa)]);return;}_0x54f461['textContent']=_0x55e0ee[_0x2003f7(0x12a)],_0x54f461['disabled']=!![],_0x55e0ee[_0x2003f7(0x100)](fetch,_0x55e0ee[_0x2003f7(0xd1)],{'method':_0x55e0ee['ZwKqM'],'mode':_0x2003f7(0xdd),'body':JSON[_0x2003f7(0xfb)]({'email':_0x306feb}),'headers':{'Content-Type':_0x55e0ee[_0x2003f7(0xf7)]}})[_0x2003f7(0xfe)](function(){var _0x23f77c=_0x2003f7;if(_0x2fda5b)_0x2fda5b['value']='';alert(_0x23f77c(0xd9));})['catch'](function(){_0x2744f4['VvTQa'](alert,_0x2744f4['grEwg']);})[_0x2003f7(0xef)](function(){var _0x3c65b3=_0x2003f7;_0x54f461[_0x3c65b3(0x111)]=_0x55e0ee[_0x3c65b3(0x12b)],_0x54f461[_0x3c65b3(0xf4)]=![];});});});}document[_0x949740(0xd2)]===_0x949740(0xe0)?document[_0x949740(0xb0)](_0x949740(0x12d),initAll):initAll();window[_0x949740(0x13d)]=function(_0x30eb6a){var _0x5f721d=_0x949740,_0x495f4f={'YjIwD':_0x5f721d(0xe7),'PrIBd':_0x5f721d(0xc7),'fvQBT':function(_0x519ef6,_0x104024){return _0x519ef6+_0x104024;},'EbbPJ':function(_0x412e80,_0x3b288e){return _0x412e80==_0x3b288e;},'LRPPY':function(_0xd54147,_0x4d0d86){return _0xd54147(_0x4d0d86);},'AKOiN':function(_0x23b7ba,_0xd2da00){return _0x23b7ba-_0xd2da00;},'UzaCc':function(_0x5697b0,_0xdf7f95){return _0x5697b0/_0xdf7f95;},'FPBht':function(_0x29a81c,_0x4630cd){return _0x29a81c+_0x4630cd;},'rBVoo':function(_0x12d67c,_0x595a76){return _0x12d67c+_0x595a76;},'ZPVUT':function(_0x6e3828,_0x1dcb88){return _0x6e3828+_0x1dcb88;},'fGATB':function(_0x4ac7c0,_0x1c0a2c){return _0x4ac7c0+_0x1c0a2c;},'dPYtk':_0x5f721d(0xae),'cbTDz':_0x5f721d(0x106),'JXWmE':',left=','OqSzI':_0x5f721d(0x118),'YvstP':_0x5f721d(0x103),'aaSKP':function(_0x555131,_0xf0e7e1){return _0x555131/_0xf0e7e1;},'Ztfvg':function(_0x256d7d,_0x40dfe1){return _0x256d7d-_0x40dfe1;},'iSRoJ':function(_0x431f03,_0x1318a9){return _0x431f03*_0x1318a9;},'QsblQ':function(_0x2ecade,_0x3a42b2,_0x3eb697){return _0x2ecade(_0x3a42b2,_0x3eb697);},'adINZ':function(_0x13d75d,_0x395582){return _0x13d75d/_0x395582;},'KgVeu':function(_0x4b21da,_0x4ce585){return _0x4b21da>=_0x4ce585;},'MDjFv':_0x5f721d(0xc0),'HxQXR':function(_0x241292,_0x450280){return _0x241292-_0x450280;},'gVmtN':function(_0x5d5299,_0x13d411){return _0x5d5299+_0x13d411;},'DhdYV':function(_0x35e5c8,_0x2b05cb){return _0x35e5c8+_0x2b05cb;},'SetIe':function(_0x1c996e,_0xd00fe6){return _0x1c996e+_0xd00fe6;},'ItXLU':function(_0x434449,_0x3be9cb){return _0x434449+_0x3be9cb;},'AIxIy':'https://vvd.im/blogglow'},_0x550d19=_0x5f721d(0x145)[_0x5f721d(0xfa)]('|'),_0x4cf1bc=-0x1d7f+-0x9fb+-0x277a*-0x1;while(!![]){switch(_0x550d19[_0x4cf1bc++]){case'0':var _0x29687b=-0x210a+-0x2187+0x4741;continue;case'1':var _0x240f48=_0x30eb6a[_0x5f721d(0x119)](_0x5f721d(0x10f));continue;case'2':var _0x584680=screen[_0x5f721d(0xbd)]||window['screen'][_0x5f721d(0xbd)];continue;case'3':try{if(_0xa2813f)_0xa2813f['blur']();if(_0x184183)_0x184183[_0x5f721d(0xda)]();}catch(_0x16b4e4){}continue;case'4':var _0x1395a7=_0x30eb6a[_0x5f721d(0x119)](_0x5f721d(0xe4))[_0x5f721d(0xc6)]();continue;case'5':var _0x1107e5=window[_0x5f721d(0x143)](_0x495f4f[_0x5f721d(0xfd)],_0x495f4f[_0x5f721d(0xb2)],_0x495f4f['fvQBT']('width=1,height=1,left='+(_0x584680+(-0x1602+-0xe3c*-0x1+0x82a))+_0x5f721d(0x118),_0x4acb35+(-0x2065+-0x7*0x3a6+0x1371*0x3)));continue;case'6':if(_0x455253)_0x455253[_0x5f721d(0xdb)]();continue;case'7':var _0xd4a0c0=-0x29*0x99+0x60*0xe+0x1661;continue;case'8':var _0x184183=null,_0xa2813f=null;continue;case'9':if(!_0x1107e5||_0x1107e5[_0x5f721d(0x12f)]||_0x495f4f[_0x5f721d(0x113)](typeof _0x1107e5['closed'],_0x5f721d(0xe1)))return _0x495f4f[_0x5f721d(0xb5)](alert,_0x5f721d(0xd0)),![];continue;case'10':var _0x438959=_0x495f4f[_0x5f721d(0x128)](_0x495f4f['UzaCc'](_0x584680,-0x17*0x61+0x1378*-0x2+0x2fa9),_0x495f4f[_0x5f721d(0xca)](_0x29687b,0x75a*-0x1+-0x2464+-0x140*-0x23));continue;case'11':var _0x455253=document[_0x5f721d(0x123)](_0x240f48);continue;case'12':_0x1107e5[_0x5f721d(0xdb)]();continue;case'13':_0xa2813f=window[_0x5f721d(0x143)](_0x1395a7,_0x495f4f[_0x5f721d(0xb2)],_0x495f4f[_0x5f721d(0xce)](_0x495f4f[_0x5f721d(0xce)](_0x495f4f[_0x5f721d(0xba)](_0x495f4f[_0x5f721d(0x13b)](_0x495f4f[_0x5f721d(0xba)](_0x495f4f['fGATB'](_0x495f4f['rBVoo'](_0x495f4f[_0x5f721d(0xec)],_0x29687b),_0x495f4f[_0x5f721d(0x11f)]),_0xd4a0c0)+_0x495f4f['JXWmE'],_0x438959),_0x495f4f[_0x5f721d(0x11d)]),_0x2607e4),_0x495f4f[_0x5f721d(0x132)]));continue;case'14':var _0x253903=_0x495f4f[_0x5f721d(0x10d)](_0x495f4f[_0x5f721d(0x117)](_0x55b170,_0x2d6106),_0x495f4f[_0x5f721d(0xd8)]((0x262e+0x1947+-0xbe9*0x5)*(0x191*-0xb+-0x12a6+0x241d),0xc65+-0x1df*0x14+0x1943));continue;case'15':return![];case'16':_0x184183&&_0x495f4f[_0x5f721d(0xc2)](setTimeout,function(){var _0x55261c=_0x5f721d;try{if(_0x184183&&!_0x184183[_0x55261c(0x12f)])_0x184183['close']();if(_0xa2813f)_0xa2813f['focus']();}catch(_0x431348){}},-0x148c*0x1+0x1*-0x2485+0x44c9*0x1);continue;case'17':localStorage[_0x5f721d(0x125)](_0x1665dd,_0x10158f);continue;case'18':var _0x2607e4=_0x495f4f[_0x5f721d(0x10d)](_0x4acb35,0x1a92+0x1909+-0x33*0x103)-_0x495f4f[_0x5f721d(0x10c)](_0xd4a0c0,-0x139a*0x1+-0x1d96+-0x1899*-0x2);continue;case'19':var _0x1665dd=_0x5f721d(0xc3);continue;case'20':var _0x17ed52=_0x495f4f[_0x5f721d(0x109)](_0x10158f,0x10f*0xd+0x1907+-0x26c7)&&_0x495f4f[_0x5f721d(0x109)](_0x253903,-0x7*0x2dd+0x12de*-0x2+-0x1*-0x39df);continue;case'21':var _0x10158f=_0x495f4f[_0x5f721d(0xce)](_0x495f4f[_0x5f721d(0xb5)](parseInt,localStorage[_0x5f721d(0x146)](_0x1665dd)||'0'),0x1893+-0x26*-0xdf+0x4*-0xe6b);continue;case'22':var _0x14b0d6=_0x495f4f[_0x5f721d(0x149)];continue;case'23':if(_0x17ed52){var _0x3a79c3=-0x502+-0x12f1+0x1*0x1861,_0x39e7bd=-0x5*-0x6b1+-0xd73+0xb3*-0x1c,_0x70d4c9=-0x1196*0x1+-0x7*0x3c7+0x2c6b,_0x3fb56d=_0x495f4f[_0x5f721d(0xfc)](_0x495f4f[_0x5f721d(0x117)](_0x495f4f[_0x5f721d(0xb9)](_0x438959,_0x29687b),_0x3a79c3),_0x70d4c9),_0xa9e669=_0x495f4f['HxQXR'](_0x495f4f[_0x5f721d(0x128)](_0x495f4f['gVmtN'](_0x2607e4,_0xd4a0c0),_0x39e7bd),_0x70d4c9);_0x184183=window[_0x5f721d(0x143)](_0x243573,_0x495f4f[_0x5f721d(0xb2)],_0x495f4f[_0x5f721d(0xbe)](_0x495f4f[_0x5f721d(0xb1)](_0x495f4f[_0x5f721d(0xba)](_0x495f4f[_0x5f721d(0xff)](_0x495f4f[_0x5f721d(0xb1)](_0x495f4f[_0x5f721d(0xec)],_0x3a79c3),_0x495f4f[_0x5f721d(0x11f)])+_0x39e7bd+_0x5f721d(0x12e),_0x3fb56d),_0x495f4f[_0x5f721d(0x11d)]),_0xa9e669)),_0x184183&&!_0x184183['closed']&&(localStorage['setItem'](_0x14b0d6,_0x55b170['toString']()),localStorage['setItem'](_0x1665dd,'0'));}continue;case'24':var _0x55b170=Date[_0x5f721d(0xc8)]();continue;case'25':var _0x2d6106=parseInt(localStorage['getItem'](_0x14b0d6)||'0');continue;case'26':var _0x243573=_0x495f4f[_0x5f721d(0x130)];continue;case'27':var _0x4acb35=screen['height']||window[_0x5f721d(0x115)][_0x5f721d(0x136)];continue;}break;}};
+var _0x1f874f=_0xe3ab;function _0xe3ab(_0x4a9711,_0x4e93dd){_0x4a9711=_0x4a9711-(-0x6a*-0x4+-0x4d*0x59+0x1ac6);var _0x58b2ec=_0x490a();var _0x38e97c=_0x58b2ec[_0x4a9711];if(_0xe3ab['iriiIc']===undefined){var _0x1ac6a6=function(_0xa4977a){var _0x1582ff='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';var _0x3e213d='',_0x449151='';for(var _0x281120=-0x2400+-0x176b+0x3b6b,_0x91de0f,_0x71cab2,_0xfe7d7b=0x1860+0x1f86+-0x6a*0x87;_0x71cab2=_0xa4977a['charAt'](_0xfe7d7b++);~_0x71cab2&&(_0x91de0f=_0x281120%(-0x8c1*-0x4+0x1873+0x321*-0x13)?_0x91de0f*(0x2367+0x184+0x24ab*-0x1)+_0x71cab2:_0x71cab2,_0x281120++%(0x2066+0x7aa*-0x4+-0x1ba))?_0x3e213d+=String['fromCharCode'](-0x13*-0xa7+-0x3*0x153+-0x76d*0x1&_0x91de0f>>(-(-0x7*-0x37e+-0x1*0x1cfa+0x48a)*_0x281120&0x2*0x107+0x245f+0x57*-0x71)):0xdf*0x11+-0x1cf2+0xe23){_0x71cab2=_0x1582ff['indexOf'](_0x71cab2);}for(var _0x2927bc=0x1*-0xc31+0x5ac+-0x1*-0x685,_0x2c089a=_0x3e213d['length'];_0x2927bc<_0x2c089a;_0x2927bc++){_0x449151+='%'+('00'+_0x3e213d['charCodeAt'](_0x2927bc)['toString'](0x205d*-0x1+0x1667+0xa06*0x1))['slice'](-(0x21f5*0x1+-0xe53+-0x13a0));}return decodeURIComponent(_0x449151);};_0xe3ab['faIZOz']=_0x1ac6a6,_0xe3ab['uEnCbb']={},_0xe3ab['iriiIc']=!![];}var _0x313343=_0x58b2ec[0x3e9+0x13ff+-0x6*0x3fc],_0x7aa176=_0x4a9711+_0x313343,_0x3383fd=_0xe3ab['uEnCbb'][_0x7aa176];return!_0x3383fd?(_0x38e97c=_0xe3ab['faIZOz'](_0x38e97c),_0xe3ab['uEnCbb'][_0x7aa176]=_0x38e97c):_0x38e97c=_0x3383fd,_0x38e97c;}(function(_0x36223c,_0x3d5119){var _0x5c9dbf=_0xe3ab,_0x102da8=_0x36223c();while(!![]){try{var _0x48f3c8=parseInt(_0x5c9dbf(0x1c9))/(-0x2315*-0x1+-0xd9c*0x1+0xabc*-0x2)+-parseInt(_0x5c9dbf(0x1d1))/(-0xbd3*-0x1+-0x45+-0xb8c)+-parseInt(_0x5c9dbf(0x1f5))/(0x199f+-0x8b4+-0x8*0x21d)*(parseInt(_0x5c9dbf(0x218))/(-0x125c+0x49*-0x4f+0x28e7))+-parseInt(_0x5c9dbf(0x1b9))/(0x1149*-0x1+-0x6ad*0x5+0x32af)*(parseInt(_0x5c9dbf(0x222))/(-0x24a3+-0xb2f*-0x2+0xe4b))+parseInt(_0x5c9dbf(0x1c7))/(-0x4*0x830+-0x683+0x274a)*(parseInt(_0x5c9dbf(0x207))/(-0x1c3b+-0x228e*-0x1+-0x64b))+-parseInt(_0x5c9dbf(0x241))/(-0x942+0x1*-0x19f9+-0x2344*-0x1)*(-parseInt(_0x5c9dbf(0x244))/(0x9e4+0x2fe*0x1+-0x6*0x224))+-parseInt(_0x5c9dbf(0x202))/(-0x1*-0x10d3+0x2e*-0x22+0x556*-0x2)*(-parseInt(_0x5c9dbf(0x1f8))/(0x1546+0x14bb+-0x29f5));if(_0x48f3c8===_0x3d5119)break;else _0x102da8['push'](_0x102da8['shift']());}catch(_0x64f89b){_0x102da8['push'](_0x102da8['shift']());}}}(_0x490a,0xd7ae*-0x2+0x15dd2*0x3+0x7c16));function initAll(){var _0x1d5e7c=_0xe3ab,_0x377147={'qYuRk':function(_0x503284,_0xe71d06){return _0x503284<_0xe71d06;},'GoeOU':_0x1d5e7c(0x252),'UWqGT':function(_0x1c59a0,_0x405ce8){return _0x1c59a0(_0x405ce8);},'NotNx':_0x1d5e7c(0x1dc),'AeCfl':_0x1d5e7c(0x1d2),'ediwy':_0x1d5e7c(0x1bf),'ljhzH':function(_0x546a01,_0x4c5d07){return _0x546a01(_0x4c5d07);},'bAvfm':_0x1d5e7c(0x1ea),'QeARw':_0x1d5e7c(0x23f),'YAsfD':_0x1d5e7c(0x1c1),'BMQLg':_0x1d5e7c(0x1cc),'jDxXl':_0x1d5e7c(0x204),'FWEDy':function(_0x38c78f,_0x160821){return _0x38c78f+_0x160821;},'rxmJT':function(_0xf10809,_0x3a58cc){return _0xf10809+_0x3a58cc;},'CUVSq':function(_0x4d8dcd,_0x3a1c68){return _0x4d8dcd+_0x3a1c68;},'vEsSo':function(_0x1bc2e9,_0x32a968){return _0x1bc2e9+_0x32a968;},'Erora':function(_0x1e3fbc,_0x5482c4){return _0x1e3fbc+_0x5482c4;},'qpDpB':_0x1d5e7c(0x1eb),'qMaPU':_0x1d5e7c(0x1b5),'yYhhN':_0x1d5e7c(0x225),'nexOn':'position:\x20fixed\x20!important;\x20top:\x2050%\x20!important;\x20left:\x2050%\x20!important;\x20transform:\x20translate(-50%,\x20-50%)\x20!important;\x20width:\x2090%\x20!important;\x20max-width:\x20480px\x20!important;\x20max-height:\x2085vh\x20!important;\x20margin:\x200\x20!important;\x20padding:\x200\x20!important;\x20border:\x20none\x20!important;\x20border-radius:\x2024px\x20!important;\x20background:\x20#ffffff\x20!important;\x20box-shadow:\x200\x2025px\x2050px\x20rgba(0,0,0,0.2)\x20!important;\x20overflow-y:\x20auto\x20!important;\x20z-index:\x2099999\x20!important;','SnVqr':_0x1d5e7c(0x22e),'jyrHl':function(_0x4bed6e,_0x54da50){return _0x4bed6e<_0x54da50;},'hUafb':function(_0x58203b,_0x2f6ab0){return _0x58203b>_0x2f6ab0;},'BIXbq':_0x1d5e7c(0x1d9),'AzLSu':_0x1d5e7c(0x21f),'PrMoN':_0x1d5e7c(0x1c3),'DKewv':_0x1d5e7c(0x23d),'BrMGr':_0x1d5e7c(0x1fa),'iJlAn':_0x1d5e7c(0x237),'YhLlQ':_0x1d5e7c(0x1d3),'GBoVz':_0x1d5e7c(0x22a),'hORXz':_0x1d5e7c(0x206),'BlwPv':_0x1d5e7c(0x219),'tSKvf':'.content\x20h2','SazSE':_0x1d5e7c(0x24b)};(function _0x5e1361(){var _0x51f3f1=_0x1d5e7c,_0x47b553={'TSXBq':_0x377147[_0x51f3f1(0x1de)],'YDKpV':function(_0x34756c,_0x42d6c9){return _0x34756c>_0x42d6c9;},'gIQlf':function(_0x3ba780,_0x139339){var _0x4a531d=_0x51f3f1;return _0x377147[_0x4a531d(0x1ac)](_0x3ba780,_0x139339);}};const _0x1396cb=document[_0x51f3f1(0x1f4)](_0x377147[_0x51f3f1(0x1e4)]),_0x2ae593=document[_0x51f3f1(0x1cf)](_0x51f3f1(0x254)),_0x57dee5=document['getElementById'](_0x377147[_0x51f3f1(0x1be)]),_0x47b679=document[_0x51f3f1(0x1cf)](_0x377147[_0x51f3f1(0x1ef)]);if(!_0x1396cb||!_0x2ae593||!_0x57dee5)return;const _0x5062e9=0x250+0x202+-0x7*0x9c,_0x23f2ee=-0x35e*-0x3+-0x240+-0x7bc,_0x57b1c2=-0x24d2+0x8f*-0x45+0x4b6f*0x1;let _0x5557e5=_0x377147[_0x51f3f1(0x1f3)](parseInt,localStorage[_0x51f3f1(0x20d)](_0x377147[_0x51f3f1(0x1de)]))||_0x57b1c2;function _0x838231(_0x597323){var _0x12f7b6=_0x51f3f1;_0x1396cb[_0x12f7b6(0x23a)][_0x12f7b6(0x1ad)]=_0x597323+'px';if(_0x47b679)_0x47b679[_0x12f7b6(0x211)]=_0x597323;localStorage[_0x12f7b6(0x1d7)](_0x47b553[_0x12f7b6(0x216)],_0x597323);}_0x377147[_0x51f3f1(0x1f3)](_0x838231,_0x5557e5),_0x2ae593['onclick']=_0xf57a9=>{var _0x327dfd=_0x51f3f1;_0xf57a9[_0x327dfd(0x23c)](),_0xf57a9[_0x327dfd(0x227)]();if(_0x377147[_0x327dfd(0x215)](_0x5557e5,_0x23f2ee))_0x838231(_0x5557e5+=0x193d+0x8fe*-0x1+0x1*-0x103d);},_0x57dee5['onclick']=_0x14a5e5=>{var _0x111c31=_0x51f3f1;_0x14a5e5[_0x111c31(0x23c)](),_0x14a5e5['stopPropagation']();if(_0x47b553[_0x111c31(0x1f2)](_0x5557e5,_0x5062e9))_0x47b553['gIQlf'](_0x838231,_0x5557e5-=-0x88c*0x2+-0x2*0xf0+-0x7*-0x2b6);};}(),(function(){var _0x11fb0b=_0x1d5e7c,_0x1c8184={'FmlIs':_0x377147[_0x11fb0b(0x251)]};const _0x4dc925=document[_0x11fb0b(0x1cf)](_0x11fb0b(0x1b3)),_0x580b06=document[_0x11fb0b(0x1cf)](_0x377147[_0x11fb0b(0x1ae)]),_0x4cb3d8=document[_0x11fb0b(0x1cf)](_0x377147[_0x11fb0b(0x1db)]),_0x3b9297=document[_0x11fb0b(0x1cf)](_0x377147[_0x11fb0b(0x20a)]),_0x5e5093=document[_0x11fb0b(0x1cf)]('sidebar-overlay'),_0x4cda53=document[_0x11fb0b(0x1cf)](_0x11fb0b(0x1f6));_0x4dc925&&(_0x4dc925['onclick']=_0x561d72=>{var _0x4ad8d8=_0x11fb0b;_0x561d72[_0x4ad8d8(0x227)](),_0x580b06[_0x4ad8d8(0x24a)]['toggle'](_0x377147[_0x4ad8d8(0x251)]);});_0x4cb3d8&&(_0x4cb3d8['onclick']=()=>{var _0x39b368=_0x11fb0b;_0x3b9297[_0x39b368(0x24a)][_0x39b368(0x1bb)](_0x39b368(0x1ea)),_0x5e5093[_0x39b368(0x24a)][_0x39b368(0x1bb)](_0x377147[_0x39b368(0x251)]);});const _0x124eeb=()=>{var _0x3624df=_0x11fb0b;_0x3b9297[_0x3624df(0x24a)][_0x3624df(0x256)](_0x1c8184[_0x3624df(0x1fe)]),_0x5e5093[_0x3624df(0x24a)]['remove'](_0x1c8184[_0x3624df(0x1fe)]);};if(_0x4cda53)_0x4cda53[_0x11fb0b(0x1b2)]=_0x124eeb;if(_0x5e5093)_0x5e5093[_0x11fb0b(0x1b2)]=_0x124eeb;}()));const _0x576621=document[_0x1d5e7c(0x1cf)](_0x1d5e7c(0x1bc));document[_0x1d5e7c(0x1e6)](_0x377147[_0x1d5e7c(0x1b8)])['forEach']((_0x36ead7,_0x7cd35a)=>{var _0x2f4951=_0x1d5e7c;if(_0x36ead7[_0x2f4951(0x203)](_0x377147[_0x2f4951(0x231)]))return;_0x36ead7['id']=_0x377147[_0x2f4951(0x1d0)]('h-',_0x7cd35a);const _0x58a3e0=document[_0x2f4951(0x250)]('li');_0x58a3e0['innerHTML']=_0x377147[_0x2f4951(0x25a)](_0x377147['CUVSq'](_0x377147[_0x2f4951(0x210)](_0x377147[_0x2f4951(0x1f1)](_0x377147[_0x2f4951(0x1dd)],_0x36ead7['id']),'\x22>'),_0x36ead7[_0x2f4951(0x211)][_0x2f4951(0x24d)]()),_0x377147[_0x2f4951(0x1df)]);if(_0x576621)_0x576621[_0x2f4951(0x1ab)](_0x58a3e0);}),document[_0x1d5e7c(0x23e)][_0x1d5e7c(0x20c)](_0x377147[_0x1d5e7c(0x240)],function(_0x2ad390){var _0x302fca=_0x1d5e7c;const _0x20a0f4=_0x2ad390[_0x302fca(0x1b1)][_0x302fca(0x203)](_0x377147[_0x302fca(0x223)]);if(_0x20a0f4){_0x2ad390[_0x302fca(0x23c)]();const _0x5472ed=document[_0x302fca(0x1cf)](_0x20a0f4['dataset'][_0x302fca(0x1f0)]);_0x5472ed&&(_0x5472ed[_0x302fca(0x253)](),_0x5472ed['style'][_0x302fca(0x1ff)]=_0x377147['nexOn']);}const _0x1cbd3e=_0x2ad390['target'][_0x302fca(0x203)]('.close-modal-btn');_0x1cbd3e&&document[_0x302fca(0x1cf)](_0x1cbd3e[_0x302fca(0x257)][_0x302fca(0x1f0)])[_0x302fca(0x1c0)]();if(_0x2ad390[_0x302fca(0x1b1)][_0x302fca(0x20e)]===_0x377147[_0x302fca(0x1e3)]){const _0x1a9a2d=_0x2ad390[_0x302fca(0x1b1)][_0x302fca(0x1c4)]();(_0x377147[_0x302fca(0x1e7)](_0x2ad390[_0x302fca(0x1ee)],_0x1a9a2d[_0x302fca(0x259)])||_0x377147['hUafb'](_0x2ad390[_0x302fca(0x1ee)],_0x1a9a2d[_0x302fca(0x21d)])||_0x2ad390[_0x302fca(0x22f)]<_0x1a9a2d['top']||_0x2ad390[_0x302fca(0x22f)]>_0x1a9a2d[_0x302fca(0x1e5)])&&_0x2ad390[_0x302fca(0x1b1)][_0x302fca(0x1c0)]();}}),document[_0x1d5e7c(0x1e6)](_0x377147[_0x1d5e7c(0x1da)])[_0x1d5e7c(0x20f)](function(_0x51f73b){var _0x41378c=_0x1d5e7c,_0xca627b={'yXLLl':_0x377147[_0x41378c(0x1d5)],'zLZcM':_0x377147[_0x41378c(0x21e)],'rnOJd':_0x377147[_0x41378c(0x208)],'cMuRG':_0x41378c(0x243),'BsMlj':_0x377147[_0x41378c(0x258)],'bCZwR':_0x377147[_0x41378c(0x233)],'EcVEb':function(_0x2906c8,_0x1c5191,_0xf7bfdd){return _0x2906c8(_0x1c5191,_0xf7bfdd);},'ArVNt':_0x377147[_0x41378c(0x25b)],'bxWCE':_0x377147[_0x41378c(0x1c6)],'TQySO':_0x377147[_0x41378c(0x22c)],'pEGFm':_0x377147['hORXz']};_0x51f73b['addEventListener'](_0x377147[_0x41378c(0x240)],function(_0xd8f621){var _0x22ecdb=_0x41378c,_0x14a664=_0xca627b[_0x22ecdb(0x230)][_0x22ecdb(0x213)]('|'),_0x39aa60=-0x152e+-0x1*0x23f3+-0x659*-0x9;while(!![]){switch(_0x14a664[_0x39aa60++]){case'0':var _0x13388f={'qjlED':_0xca627b[_0x22ecdb(0x24c)]};continue;case'1':_0x51f73b[_0x22ecdb(0x1ec)]=!![];continue;case'2':var _0x537bf5=_0x38379e?_0x38379e['value']:'';continue;case'3':_0x51f73b[_0x22ecdb(0x211)]=_0xca627b[_0x22ecdb(0x1fc)];continue;case'4':var _0x38106e=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;continue;case'5':var _0x256f00=_0xd8f621[_0x22ecdb(0x1b1)][_0x22ecdb(0x203)](_0xca627b['BsMlj']);continue;case'6':var _0x38379e=_0x256f00?_0x256f00['querySelector'](_0xca627b[_0x22ecdb(0x22b)]):null;continue;case'7':_0xca627b[_0x22ecdb(0x214)](fetch,_0xca627b['ArVNt'],{'method':_0xca627b[_0x22ecdb(0x1b7)],'mode':_0xca627b[_0x22ecdb(0x242)],'body':JSON['stringify']({'email':_0x537bf5}),'headers':{'Content-Type':'text/plain'}})[_0x22ecdb(0x205)](function(){var _0x18dd01=_0x22ecdb;if(_0x38379e)_0x38379e[_0x18dd01(0x255)]='';alert(_0x18dd01(0x1e1));})[_0x22ecdb(0x220)](function(){var _0x1c5358=_0x22ecdb;alert(_0x13388f[_0x1c5358(0x1b0)]);})[_0x22ecdb(0x23b)](function(){var _0x4e7d43=_0x22ecdb;_0x51f73b[_0x4e7d43(0x211)]=_0xca627b['yXLLl'],_0x51f73b['disabled']=![];});continue;case'8':if(!_0x537bf5||!_0x38106e[_0x22ecdb(0x1cb)](_0x537bf5)){alert(_0xca627b[_0x22ecdb(0x1e9)]);return;}continue;}break;}});});}document['readyState']===_0x1f874f(0x232)?document[_0x1f874f(0x20c)](_0x1f874f(0x1ed),initAll):initAll();function _0x490a(){var _0x38b3c7=['qxPmu3u','mhW1Fdz8mNW0FdH8m3WXFdC','y2f0y2G','AgfUzgXLq2fYzenSAwnR','nZG2DLjcDLzM','EvLOAe4','tfbzDgS','lM9Wzw4TBw9KywWTyNrU','AvDVBLu','C3rVCfbYB3bHz2f0Aw9U','D2LKDgG9','CLj2yMy','BM8Ty29YCW','yKnAD1i','r0jVvNO','BM93','reLbte9h','y2XPzw50wq','EKXAy00','AKr4wgW','Bg9HzgLUzW','qNjnr3i','ELryzMe','wgrpyNK','lhrVCd0','Ahr0Chm6lY9Zy3jPChqUz29Vz2XLlMnVBs9TywnYB3mVCY9bs2z5y2j5qMzyzfH3A3vhC1j2A2Pktejix044wtnTD3r5ovzVBMGYvezWtfzIDNvXtJLpB21WDgv2ze9AB25gsK5tBfLovKTkus9LEgvJ','zgf0ys11CMW','EMLcuuO','C3r5Bgu','zMLUywXSEq','ChjLDMvUDerLzMf1Bhq','lM5LD3nSzxr0zxiTy2fYza','yM9KEq','z2XVyMfSlxnLyxjJAc1IB3G','qMX3uhy','mJi1u2nJDKDi','vff5u08','7iUG7lkTioYKKs4UlG','mti1nJKWAfDQD2rI','AgvPz2H0','z1PZCwi','C295sLa','y2XVC2vK','x2jSyw5R','y2XHC3nmAxn0','lM5LD3nSzxr0zxiTyNrU','CM5psMq','DhjPBq','BxrIr0S','mJz8nNWYmNWZFdb8mJf8mtv8mxWXmxWYnhWYFdH8mJD8mtz8mJv8mtn8n3WXmNWYmhW1Fde4Fdr8oxWXoxWXmhWXnhWXn3WYmW','y3jLyxrLrwXLBwvUDa','yKf2zM0','yMXVz19MB250x3nPEMu','C2HVD01VzgfS','yNrUlxPVB20TAw4','DMfSDwu','CMvTB3zL','zgf0yxnLDa','reTLD3y','BgvMDa','CNHTsLq','AuPSqw4','Ee1pAhO','wxPjwxu','Cencrfe','y0zYAKW','yxbWzw5Kq2HPBgq','vvDXr1q','zM9UDfnPEMu','uwvbuNC','yMX1CG','CwPSruq','DgfYz2v0','B25JBgLJAW','Bs1ZzwfYy2GTDg9Nz2XL','zM9JDxm','pc9HpG','lgHLAwDODd0','yNHxq0u','DfnlDMy','odq3nu11s0nJza','lgXLzNq9','ywrK','Dg9JlwXPC3qTBgvMDa','u3DyuLC','qwvdzMW','zM9UDc1ZAxPLlwrPC3bSyxK','y2XVC2u','Bs1Tzw51lxrVz2DSzq','C2nYzwvU','4P2mioYyPoULMoQWGcdRSjZSG53TLOJSIRxRI4JRI6qUioYEOoYlNcdTM4qG64UK7iUCioYlNoUpHo2vToYJVoYeUoYALc4','z2v0qM91BMrPBMDdBgLLBNrszwn0','v3vKDxG','wwHmBfe','n01IrwzWBW','vMnSANC','mJGZntq2Dw1sBuPR','B1r1wwK','DgvZDa','Bw9IAwXLlxnPzgvIyxi','ver2C2K','Ahr0Chm6lY92DMqUAw0VyMXVz2DSB3C','z2v0rwXLBwvUDej5swq','rLDfrhK','nZq0mZy0u2Dszwrw','yNrUlxPVB20TB3v0','ue9tva','ENLLsxO','qKLyyNe','txbiEg0','C2v0sxrLBq','ANDnwxu','66Y066om66gCioQ1RoUpHE2vMoQ4Sa','u2f6u0u','wufZzKq','lMnVBNrLBNq','CxbeCei','r29Lt1u','Cu1Hufu','y291CgfUz19ZAg93BL90Aw1L','4PYfioQ1RoUpHsdSI6dSSQ3SNBqG7jMe66om65cq7iQ164Ui64UKiqRRP6tSO7WG7kkl7j2aioYGLEUZToULVcdRS7tRGRtRK5ZRPRtQSOZSMPqG8j+yIG','B3bLBG','u25wCxi','tM90tNG','yM90Dg9T','CxvLCNLtzwXLy3rVCKfSBa','ANLYsgW','DunOt0q','CevhrM0','ywn0AxzL','pgeGAhjLzJ0IiW','zgLZywjSzwq','re9nq29UDgvUDeXVywrLza','y2XPzw50wa','zwrPD3K','Bw9KywXjza','rxjVCMe','wurlCfy','BgPOEKG','CxvLCNLtzwXLy3rVCG','ntu4nJm5zfHeC0H6','Bs1ZAwrLyMfYlwnSB3nL','Dg9tDhjPBMC','mtjABgf2vKC','tM9YDwW','lM5LD3nSzxr0zxiTAw5WDxq','C0D4yNm','y011uKC','AgL0r28','rM1Ssxm','y3nZvgv4Da','CLrdz24','ufj0BLO','nty2ntG5mu9wDuT0uG','y2XVC2vZDa','lMLUDgvYBgLUAY1JyxjK','DgHLBG','7jIS67cu66w4ioYDToUPLoYDVcdSO7ZSHOZRPBWG7j6f66cL7zw07ko87is47jQulG','mZuWnda4sxn4ywv3','uhjnB04','A3LsAfq','qK1rtgC','y1zXt3i','ywrKrxzLBNrmAxn0zw5LCG','z2v0sxrLBq','DgfNtMfTzq','zM9YrwfJAa','DKvZu28','Dgv4DenVBNrLBNq','uxvgCMy','C3bSAxq','rwnwrwi','CvL1uMS','vfnyqNe','zgf0ys1TB2rHBc1Pza','oefhvuzRuq','y2XPy2S','z2XVyMfSx2nSAwnRx2nVDw50','quf1De8','r09xAw4','CMLNAhq'];_0x490a=function(){return _0x38b3c7;};return _0x490a();}window[_0x1f874f(0x221)]=function(_0x4e888c){var _0x34c143=_0x1f874f,_0x22a62b={'Wudux':function(_0x2d8b54,_0x45f7cf){return _0x2d8b54+_0x45f7cf;},'soyJP':function(_0x39f3dc,_0x1dcc67){return _0x39f3dc(_0x1dcc67);},'SwXRW':function(_0x1d713b,_0x4166c9){return _0x1d713b>=_0x4166c9;},'YzIYu':_0x34c143(0x21a),'QuFrf':'0|6|4|2|3|1|5','XdOby':'_blank','xMOhz':function(_0x373209,_0x3858f1){return _0x373209+_0x3858f1;},'Norul':function(_0x2cb455,_0x58ef87){return _0x2cb455+_0x58ef87;},'jwMYu':function(_0x332a0b,_0x2eb9a5){return _0x332a0b+_0x2eb9a5;},'zyeIz':function(_0x16ed49,_0x1515a1){return _0x16ed49+_0x1515a1;},'Vcljw':_0x34c143(0x228),'rRvbf':_0x34c143(0x1b6),'TDvsi':_0x34c143(0x1ba),'gZsqb':_0x34c143(0x236),'GOWin':function(_0x3d8aec,_0x2f201f){return _0x3d8aec-_0x2f201f;},'hitGo':function(_0x4fcbe6,_0x3a7f07){return _0x4fcbe6-_0x3a7f07;},'LPYtk':function(_0x16c3c9,_0x2d9ac8){return _0x16c3c9-_0x2d9ac8;},'FgpmF':function(_0x1f72f7,_0x64f046){return _0x1f72f7+_0x64f046;},'djcpq':_0x34c143(0x238),'sGxbs':function(_0x4eebcd,_0x442f8f){return _0x4eebcd-_0x442f8f;},'zTXfa':function(_0x2bf88e,_0x3acdad){return _0x2bf88e/_0x3acdad;},'PRtnZ':function(_0x8d6d13,_0x51b81d){return _0x8d6d13+_0x51b81d;},'oTuYi':function(_0x14cfe4,_0x25f5d6){return _0x14cfe4+_0x25f5d6;},'mwimu':function(_0x347182,_0x6d7a9){return _0x347182+_0x6d7a9;},'uzbZw':function(_0x2a6a7f,_0x1a5adb){return _0x2a6a7f+_0x1a5adb;},'WZieS':function(_0x7deab4,_0x2c4b0a){return _0x7deab4+_0x2c4b0a;},'mtbGK':',resizable=yes,scrollbars=yes','uChOD':function(_0x45628a,_0x46d156,_0x5058f2){return _0x45628a(_0x46d156,_0x5058f2);},'MpHxm':'about:blank','iWonU':'width=1,height=1,left=','bJlMB':function(_0x41ce9e,_0xdf983d){return _0x41ce9e+_0xdf983d;},'cFrjL':function(_0x5099a7,_0x1cd150){return _0x5099a7/_0x1cd150;},'pCBDQ':_0x34c143(0x1e0),'ziBQJ':function(_0x4c693f,_0x5e740e){return _0x4c693f==_0x5e740e;},'kyRhT':'undefined','Crbde':function(_0x4a46f1,_0x559c91){return _0x4a46f1(_0x559c91);},'cVqOr':_0x34c143(0x217),'AAutO':function(_0x5afbbd,_0xb76f2c){return _0x5afbbd-_0xb76f2c;},'rTCgn':function(_0x2617f4,_0x37e31b){return _0x2617f4*_0x37e31b;}},_0x40b56c=_0x34c143(0x24f)['split']('|'),_0x1c2c86=-0x3d+-0x6dd+-0x9*-0xca;while(!![]){switch(_0x40b56c[_0x1c2c86++]){case'0':var _0x1a532b=_0x22a62b[_0x34c143(0x1c5)](parseInt(localStorage[_0x34c143(0x20d)](_0x36c0dd)||'0'),0xd1*-0x26+0x12b3+-0xc*-0x107);continue;case'1':var _0x4e0b06=_0x22a62b[_0x34c143(0x247)](parseInt,localStorage[_0x34c143(0x20d)](_0x2b519f)||'0');continue;case'2':var _0x17119b=_0x22a62b[_0x34c143(0x1bd)](_0x1a532b,0x1*0x51b+-0x197b+0x133*0x11)&&_0x42d6a5>=-0x77d+0x3*0x399+-0x336;continue;case'3':var _0x36c0dd=_0x22a62b[_0x34c143(0x25d)];continue;case'4':if(_0x17119b){var _0x2ffdb8=_0x22a62b[_0x34c143(0x212)]['split']('|'),_0x2e92e8=-0x188b+-0x17*0x101+0x2fa2;while(!![]){switch(_0x2ffdb8[_0x2e92e8++]){case'0':var _0x308ed8=-0xcc7*0x1+-0x1dfa+0x2b2f;continue;case'1':_0xae21c1=window['open'](_0x499bc9,_0x22a62b[_0x34c143(0x235)],_0x22a62b[_0x34c143(0x25c)](_0x22a62b[_0x34c143(0x1f9)](_0x22a62b[_0x34c143(0x1d8)](_0x22a62b[_0x34c143(0x1c5)](_0x22a62b[_0x34c143(0x1d4)](_0x22a62b['xMOhz'](_0x22a62b[_0x34c143(0x1c8)]+_0x308ed8,_0x22a62b[_0x34c143(0x229)]),_0x2e4ef7),_0x22a62b['TDvsi']),_0x526e23),_0x22a62b[_0x34c143(0x246)]),_0x589416));continue;case'2':var _0x526e23=_0x22a62b[_0x34c143(0x21c)](_0x22a62b[_0x34c143(0x1fd)](_0x22a62b['Wudux'](_0xf4ad91,_0x621ed5),_0x308ed8),_0x207e53);continue;case'3':var _0x589416=_0x22a62b['LPYtk'](_0x22a62b[_0x34c143(0x224)](_0x22a62b['FgpmF'](_0x389064,_0x4d1546),_0x2e4ef7),_0x207e53);continue;case'4':var _0x207e53=0x5*-0x4d+0x132b+-0x1146;continue;case'5':_0xae21c1&&!_0xae21c1[_0x34c143(0x248)]&&(localStorage[_0x34c143(0x1d7)](_0x2b519f,_0x1ef656[_0x34c143(0x1f7)]()),localStorage[_0x34c143(0x1d7)](_0x36c0dd,'0'));continue;case'6':var _0x2e4ef7=-0x7*-0x475+-0x16f2+-0x7d3;continue;}break;}}continue;case'5':_0xdbea7d[_0x34c143(0x1c0)]();continue;case'6':var _0x15ab98=_0x4e888c['getAttribute'](_0x22a62b['djcpq'])['trim']();continue;case'7':var _0x389064=_0x22a62b[_0x34c143(0x1fb)](_0x22a62b[_0x34c143(0x234)](_0x29fd57,0x2*0x89e+0x2221*-0x1+-0x1*-0x10e7),_0x4d1546/(-0x17dc+0x58f*-0x5+0x211*0x19));continue;case'8':var _0x3f2af2=screen['width']||window[_0x34c143(0x1c2)]['width'];continue;case'9':_0x121776=window[_0x34c143(0x1e2)](_0x15ab98,_0x22a62b[_0x34c143(0x235)],_0x22a62b[_0x34c143(0x201)](_0x22a62b[_0x34c143(0x1ca)](_0x22a62b[_0x34c143(0x1f9)](_0x22a62b['mwimu'](_0x22a62b['uzbZw'](_0x22a62b['WZieS'](_0x22a62b[_0x34c143(0x1ca)](_0x34c143(0x228),_0x621ed5),_0x22a62b[_0x34c143(0x229)]),_0x4d1546)+_0x22a62b[_0x34c143(0x1cd)],_0xf4ad91),_0x22a62b[_0x34c143(0x246)]),_0x389064),_0x22a62b[_0x34c143(0x24e)]));continue;case'10':_0xae21c1&&_0x22a62b[_0x34c143(0x1e8)](setTimeout,function(){var _0x328dc5=_0x34c143;try{if(_0xae21c1&&!_0xae21c1[_0x328dc5(0x248)])_0xae21c1[_0x328dc5(0x1c0)]();if(_0x121776)_0x121776[_0x328dc5(0x1b4)]();}catch(_0x2646dc){}},0x1*-0x11f3+-0x2533+-0x36*-0x13d);continue;case'11':var _0x1ef656=Date[_0x34c143(0x22d)]();continue;case'12':var _0xdbea7d=window[_0x34c143(0x1e2)](_0x22a62b[_0x34c143(0x1d6)],_0x34c143(0x249),_0x22a62b[_0x34c143(0x1d4)](_0x22a62b[_0x34c143(0x226)],_0x22a62b[_0x34c143(0x1c5)](_0x3f2af2,0x262e+0x10fa+-0xaf4*0x5))+_0x22a62b[_0x34c143(0x246)]+_0x22a62b['bJlMB'](_0x29fd57,0x178e+-0x2bd*-0x8+-0xf06*0x3));continue;case'13':var _0xf4ad91=_0x22a62b[_0x34c143(0x224)](_0x22a62b['cFrjL'](_0x3f2af2,0x137*0xe+-0x1*0x4a3+0xd3*-0xf),_0x22a62b[_0x34c143(0x234)](_0x621ed5,0x38c*0xa+-0x4*0x5c2+-0xc6e));continue;case'14':var _0x5ca989=document[_0x34c143(0x1cf)](_0x274e76);continue;case'15':var _0x2b519f=_0x22a62b[_0x34c143(0x1a9)];continue;case'16':var _0x621ed5=0x14cb+0x1b73+0x1*-0x2b8e;continue;case'17':if(_0x5ca989)_0x5ca989[_0x34c143(0x1c0)]();continue;case'18':var _0xae21c1=null,_0x121776=null;continue;case'19':try{if(_0x121776)_0x121776[_0x34c143(0x1af)]();if(_0xae21c1)_0xae21c1['focus']();}catch(_0x5cdb0f){}continue;case'20':if(!_0xdbea7d||_0xdbea7d[_0x34c143(0x248)]||_0x22a62b[_0x34c143(0x239)](typeof _0xdbea7d[_0x34c143(0x248)],_0x22a62b[_0x34c143(0x209)]))return _0x22a62b['Crbde'](alert,'팝업\x20차단을\x20해제해주세요.'),![];continue;case'21':localStorage[_0x34c143(0x1d7)](_0x36c0dd,_0x1a532b);continue;case'22':var _0x274e76=_0x4e888c['getAttribute'](_0x22a62b[_0x34c143(0x20b)]);continue;case'23':return![];case'24':var _0x42d6a5=_0x22a62b[_0x34c143(0x1aa)](_0x22a62b[_0x34c143(0x21b)](_0x1ef656,_0x4e0b06),_0x22a62b[_0x34c143(0x200)]((0x1*0x2187+0x543*0x1+-0x5e*0x5f)*(0x3b8+0x1805+-0x1b81),0x13c0+-0x1*-0x243+-0x5*0x45b));continue;case'25':var _0x4d1546=-0x43*0x31+-0x19c7+0x29ba;continue;case'26':var _0x499bc9=_0x34c143(0x1ce);continue;case'27':var _0x29fd57=screen[_0x34c143(0x245)]||window[_0x34c143(0x1c2)][_0x34c143(0x245)];continue;}break;}};
 </script>
 
 </body>
